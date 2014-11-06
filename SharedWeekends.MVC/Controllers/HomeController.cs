@@ -1,30 +1,43 @@
-﻿using SharedWeekends.MVC.ViewModels;
+﻿using SharedWeekends.Data;
+using SharedWeekends.MVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 
 namespace SharedWeekends.MVC.Controllers
 {
     public class HomeController : BaseController
     {
+        public HomeController(IWeekendsData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
-            var users = db.Users
+            var users = Data.Users
+                .All()
+                .Project()
+                .To<TopUserViewModel>()
                 .OrderByDescending(u => u.Rating)
                 .Take(5)
-                .Select(TopUserViewModel.FromUser)
                 .ToList();
 
-            var top = db.Weekends
-                .Select(WeekendViewModel.FromWeekend)
+            var top = Data.Weekends
+                .All()
+                .Project()
+                .To<WeekendViewModel>()
                 .OrderByDescending(w => w.Likes)
                 .Take(5)
                 .ToList();
 
-            var latest = db.Weekends
-                .Select(WeekendViewModel.FromWeekend)
+            var latest = Data.Weekends
+                .All()
+                .Project()
+                .To<WeekendViewModel>()
                 .OrderByDescending(w => w.CreationDate)
                 .Take(5)
                 .ToList();

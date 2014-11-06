@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Weekend
     {
@@ -19,10 +20,13 @@
 
         public virtual User Author { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Content { get; set; }
 
         public DateTime CreationDate { get; set; }
@@ -34,12 +38,10 @@
         public decimal PricePerPerson { get; set; }
 
         public int PersonCount { get; set; }
-
+        
         public decimal Lattitude { get; set; }
-
+        
         public decimal Longitude { get; set; }
-
-        public int LocationId { get; set; }
 
         public int DefaultPictureIndex { get; set; }
 
