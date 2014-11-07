@@ -37,7 +37,7 @@
 
         public decimal PricePerPerson { get; set; }
 
-        public int PersonCount { get; set; }
+        public int PeopleCount { get; set; }
         
         public decimal Lattitude { get; set; }
         

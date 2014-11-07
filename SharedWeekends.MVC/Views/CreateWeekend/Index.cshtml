@@ -5,14 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create weekend.</h2>
-@using (Html.BeginForm("Create", "CreateWeekend", FormMethod.Post))
+
+@using (Html.BeginForm("Create", "CreateWeekend", FormMethod.Post, new { @class = "form-horizontal" }))
 {
+    <h2>Share your weekend.</h2>
     @Html.AntiForgeryToken()
-    <div>
-        @Html.EditorFor(m => m.Title)
-    </div>
-    <input type="submit" name="Submit" />
-    
+    <form class="form-horizontal">
+        <div class="form-group">
+                @Html.LabelFor(m => m.Title, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.Title, "Title", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Content, "Content", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextAreaFor(m => m.Content, 10, 20, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Lattitude, "Lattitude", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.Lattitude, "Lattitude", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Longitude, "Longitude", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.Longitude, "Longitude", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PeopleCount, "PeopleCount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.PeopleCount, "PeopleCount", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PricePerPerson, "PricePerPerson", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.PricePerPerson, "PricePerPerson", new { @class = "form-control" })
+            </div>
+        </div>
+        @Html.Action("GetCategories")
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
 }
 
