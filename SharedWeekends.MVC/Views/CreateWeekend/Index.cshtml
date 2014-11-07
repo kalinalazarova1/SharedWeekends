@@ -1,0 +1,18 @@
+﻿@model SharedWeekends.Models.Weekend
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create weekend.</h2>
+@using (Html.BeginForm("Create", "CreateWeekend", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.EditorFor(m => m.Title)
+    </div>
+    <input type="submit" name="Submit" />
+    
+}
+
