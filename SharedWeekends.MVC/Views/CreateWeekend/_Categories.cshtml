@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.CategoryViewModel>
+
+@{
+    var categories = new List<SelectListItem>();
+    foreach (var category in Model)
+    {
+        categories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+    }
+}
+
+<div class="form-group">
+    <label for="CategoriesDropDown" class="col-lg-2 control-label">Categories</label>
+    <div class="col-lg-10">
+        @Html.DropDownList("Category", categories, new { @class = "form-control" })
+    </div>
+</div>

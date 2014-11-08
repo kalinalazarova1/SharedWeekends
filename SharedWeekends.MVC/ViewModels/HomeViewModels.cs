@@ -20,6 +20,7 @@ namespace SharedWeekends.MVC.ViewModels
 
     public class WeekendViewModel : IMapFrom<Weekend>, IHaveCustomMappings
     {
+        public int Id { get; set; }
         public byte[] Picture { get; set; }
 
         public string Title { get; set; }
@@ -30,7 +31,9 @@ namespace SharedWeekends.MVC.ViewModels
 
         public string Author { get; set; }
 
-        public int Likes { get; set; }
+        public int Rating { get; set; }
+
+        public int LikesCount { get; set; }
 
         public decimal Lattitude { get; set; }
 
@@ -46,7 +49,8 @@ namespace SharedWeekends.MVC.ViewModels
         {
             configuration.CreateMap<Weekend, WeekendViewModel>()
                 .ForMember(m => m.Author, opt => opt.MapFrom(w => w.Author.UserName))
-                .ForMember(m => m.Likes, opt => opt.MapFrom(w => w.Likes.Count(l => l.IsLiked) - w.Likes.Count(l => !l.IsLiked)))
+                .ForMember(m => m.Rating, opt => opt.MapFrom(w => w.Likes.Count() > 0 ? w.Likes.Sum(l => l.Stars) / w.Likes.Count() : 0))
+                .ForMember(m => m.LikesCount, opt => opt.MapFrom(w => w.Likes.Count()))
                 .ForMember(m => m.Category, opt => opt.MapFrom(w => w.Category.Name));
         }
     }

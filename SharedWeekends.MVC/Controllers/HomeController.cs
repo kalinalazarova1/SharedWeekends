@@ -30,7 +30,7 @@ namespace SharedWeekends.MVC.Controllers
                 .All()
                 .Project()
                 .To<WeekendViewModel>()
-                .OrderByDescending(w => w.Likes)
+                .OrderByDescending(w => w.Rating)
                 .Take(5)
                 .ToList();
 

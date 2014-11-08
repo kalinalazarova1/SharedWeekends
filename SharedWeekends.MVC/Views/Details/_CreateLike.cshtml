@@ -1,0 +1,32 @@
+﻿@model SharedWeekends.MVC.ViewModels.LikeViewModel
+@using (Html.BeginForm("CreateLike", "Details", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="stars" class="control-label col-md-2">Stars</label>
+            <div class="col-lg-10">
+                <div class="pull-left">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <span class="f glyphicon glyphicon-star-empty" data-rating="@(i + 1)"></span>
+                    }
+                    <input type="hidden" name="Stars" class="rating-value" value="3" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Comment, "Comment", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextAreaFor(m => m.Comment, 3, 20, new { @class = "form-control" })
+                <input type="hidden" name="WeekendId" value="@TempData["Id"]" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+}

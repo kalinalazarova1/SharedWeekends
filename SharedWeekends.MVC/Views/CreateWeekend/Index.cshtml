@@ -24,6 +24,10 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="control-label col-md-2">Map</div>
+            <div class="col-md-6 form-control" data-title="" data-lat="42.7" data-lon="23.32" id="location-map"></div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(m => m.Lattitude, "Lattitude", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-lg-10">
                 @Html.TextBoxFor(m => m.Lattitude, "Lattitude", new { @class = "form-control" })
@@ -56,4 +60,5 @@
         </div>
     </form>
 }
+<script src="~/Scripts/map-control.js"></script>
 

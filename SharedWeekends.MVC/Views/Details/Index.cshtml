@@ -1,0 +1,61 @@
+﻿@model SharedWeekends.MVC.ViewModels.WeekendViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Weekend "@Model.Title" <em>by @Model.Author</em>.</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <div class="col-md-6"><img class="img-responsive" src="../../Content/default.jpg" alt=""></div>
+                <div class="col-md-6"><img class="img-responsive" src="../../Content/default.jpg" alt=""></div>
+                <div class="caption-full">
+                    <h4 class="pull-right">@Model.PeopleCount Person(s) for BGN @Model.PricePerPerson per Person</h4>
+                    <h4>
+                        &nbsp;
+                    </h4>
+                    <div class="col-md-12">
+                        <h4>
+                            Category: @Model.Category
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-6" data-title="@Model.Title" data-lat="@Model.Lattitude" data-lon="@Model.Longitude" id="location-map"></div>
+                            <p style="text-align:justify">@Model.Content</p>
+                            <p><em>Published: @Model.CreationDate.ToShortDateString()</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">@Model.LikesCount reviews</p>
+                    <p>
+                        @for (int i = 0; i < (int)Model.Rating; i++)
+                        {
+                            <span class="glyphicon glyphicon-star"></span>
+                        }
+                        @for (int i = 0; i < 5 - (int)Model.Rating; i++)
+                        {
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        }
+                        @Model.Rating stars
+                    </p>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <button id="review" class="btn btn-success">Leave a Review</button>
+                    <div id="review-form">
+                        @Html.Action("CreateLikeForm", new { id = Model.Id })
+                    </div>
+                </div>
+                @Html.Action("GetWeekendLikes", new { id = Model.Id })
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("../../Scripts/map.js")
+}
+
+

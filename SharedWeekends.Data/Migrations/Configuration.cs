@@ -54,13 +54,9 @@ namespace SharedWeekends.Data.Migrations
                 CreationDate = DateTime.Now,
                 IsRead = false
             };
-    
+
             db.Messages.Add(message);
-            db.SaveChanges();
-
             message.Sender = userAdmin.UserName;
-            db.SaveChanges();
-
             message.Receiver = userMod.UserName;
 
             db.SaveChanges();

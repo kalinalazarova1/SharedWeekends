@@ -12,6 +12,15 @@
     list-style: none;
 }
 
+#location-map{
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+}
+
+#review-form{
+    display: none;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

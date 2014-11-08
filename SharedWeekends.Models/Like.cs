@@ -12,7 +12,11 @@ namespace SharedWeekends.Models
         public int Id { get; set; }
 
         [Required]
-        public bool IsLiked { get; set; }
+        public int Stars { get; set; }
+
+        public string Comment { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public virtual Weekend Weekend { get; set; }
 
