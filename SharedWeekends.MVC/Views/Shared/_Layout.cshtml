@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("Share Weekend", "Index", "CreateWeekend")</li>
                         <li>@Html.ActionLink("Weekends", "Index", "Home")</li>
                         if(User.IsInRole("admin"))
                         {

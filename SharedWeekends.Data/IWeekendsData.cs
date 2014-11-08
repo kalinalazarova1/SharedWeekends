@@ -15,8 +15,6 @@
 
         IRepository<Like> Likes { get; }
 
-        IRepository<Picture> Pictures { get; }
-
         IRepository<T> GetRepository<T>() where T : class;
 
         void SaveChanges();

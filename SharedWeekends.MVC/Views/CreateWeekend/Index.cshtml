@@ -24,6 +24,12 @@
             </div>
         </div>
         <div class="form-group">
+            @Html.LabelFor(m => m.PictureUrl, "PictureUrl", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(m => m.PictureUrl, "PictureUrl", new { @class = "form-control", value = @"~\Content\default.jpg" })
+            </div>
+        </div>
+        <div class="form-group">
             <div class="control-label col-md-2">Map</div>
             <div class="col-md-6 form-control" data-title="" data-lat="42.7" data-lon="23.32" id="location-map"></div>
         </div>

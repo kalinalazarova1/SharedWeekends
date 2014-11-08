@@ -21,7 +21,8 @@ namespace SharedWeekends.MVC.ViewModels
     public class WeekendViewModel : IMapFrom<Weekend>, IHaveCustomMappings
     {
         public int Id { get; set; }
-        public byte[] Picture { get; set; }
+
+        public string PictureUrl { get; set; }
 
         public string Title { get; set; }
 

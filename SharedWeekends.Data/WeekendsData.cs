@@ -63,14 +63,6 @@
             }
         }
 
-        public IRepository<Picture> Pictures
-        {
-            get
-            {
-                return this.GetRepository<Picture>();
-            }
-        }
-
         public void SaveChanges()
         {
             this.context.SaveChanges();

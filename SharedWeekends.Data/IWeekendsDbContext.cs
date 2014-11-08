@@ -15,8 +15,6 @@
 
         IDbSet<Message> Messages { get; set; }
 
-        IDbSet<Picture> Pictures { get; set; }
-
         IDbSet<User> Users { get; set; }
 
         void SaveChanges();

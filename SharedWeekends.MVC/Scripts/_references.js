@@ -8,5 +8,4 @@
 /// <reference path="respond.min.js" />
 /// <reference path="respond.matchmedia.addlistener.min.js" />
 /// <reference path="map.js" />
-/// <reference path="stars.js" />
 /// <reference path="map-control.js" />

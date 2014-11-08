@@ -57,6 +57,8 @@ namespace SharedWeekends.MVC.Controllers
 
                 Data.Likes.Add(newLike);
                 Data.SaveChanges();
+                Data.Weekends.All().FirstOrDefault(w => w.Id == newLike.WeekendId).Author.Rating += newLike.Stars;
+                Data.SaveChanges();
             }
 
             return Redirect("~/Details/Index/" + like.WeekendId);

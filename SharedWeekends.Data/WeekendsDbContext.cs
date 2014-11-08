@@ -27,8 +27,6 @@
 
         public IDbSet<Like> Likes { get; set; }
 
-        public IDbSet<Picture> Pictures { get; set; }
-
         public new void SaveChanges()
         {
             base.SaveChanges();

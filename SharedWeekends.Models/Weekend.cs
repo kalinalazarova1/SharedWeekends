@@ -6,13 +6,10 @@
 
     public class Weekend
     {
-        private IList<Picture> pictures;
-
         private ICollection<Like> likes;
 
         public Weekend()
         {
-            this.pictures = new List<Picture>();
             this.likes = new HashSet<Like>();
         }
 
@@ -43,19 +40,7 @@
         
         public decimal Longitude { get; set; }
 
-        public int DefaultPictureIndex { get; set; }
-
-        public virtual IList<Picture> Pictures 
-        {
-            get
-            {
-                return this.pictures;
-            }
-            set
-            {
-                this.pictures = value;
-            }
-        }
+        public string PictureUrl { get; set; }
 
         public virtual ICollection<Like> Likes
         {
