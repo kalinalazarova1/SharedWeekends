@@ -23,33 +23,10 @@ namespace SharedWeekends.MVC.Controllers
                 .Project()
                 .To<TopUserViewModel>()
                 .OrderByDescending(u => u.Rating)
-                .Take(5)
+                .Take(3)
                 .ToList();
 
-            var top = Data.Weekends
-                .All()
-                .Project()
-                .To<WeekendViewModel>()
-                .OrderByDescending(w => w.Rating)
-                .Take(5)
-                .ToList();
-
-            var latest = Data.Weekends
-                .All()
-                .Project()
-                .To<WeekendViewModel>()
-                .OrderByDescending(w => w.CreationDate)
-                .Take(5)
-                .ToList();
-
-            var model = new HomeViewModel()
-            {
-                LatestWeekends = latest,
-                TopUsers = users,
-                TopWeekends = top
-            };
-
-            return View(model);
+            return View(users);
         }
 
         public ActionResult About()
@@ -59,11 +36,30 @@ namespace SharedWeekends.MVC.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        [ChildActionOnly]
+        public ActionResult GetLatestWeekends()
         {
-            ViewBag.Message = "Your contact page.";
+            var latest = Data.Weekends
+                .All()
+                .Project()
+                .To<WeekendViewModel>()
+                .OrderByDescending(w => w.CreationDate)
+                .Take(4)
+                .ToList();
+            return PartialView("_Weekends", latest);
+        }
 
-            return View();
+        [ChildActionOnly]
+        public ActionResult GetTopWeekends()
+        {
+            var top = Data.Weekends
+                .All()
+                .Project()
+                .To<WeekendViewModel>()
+                .OrderByDescending(w => w.Rating)
+                .Take(4)
+                .ToList();
+            return PartialView("_Weekends", top);
         }
     }
 }

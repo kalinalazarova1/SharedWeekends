@@ -56,19 +56,5 @@ namespace SharedWeekends.MVC.Controllers
             var categories = Data.Categories.All().Project().To<CategoryViewModel>();
             return PartialView("_Categories", categories);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CollectionOfFiles(IEnumerable<HttpPostedFileBase> files)
-        {
-            var names = files.Where(f => f != null).Select(f => f.FileName);
-            return this.SetTempDataAndRedirectToAction(string.Join(", ", names));
-        }
-
-        private ActionResult SetTempDataAndRedirectToAction(string msg)
-        {
-            TempData["Success"] = msg;
-            return RedirectToAction("Index");
-        }
     }
 }

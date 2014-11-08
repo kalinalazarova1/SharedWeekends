@@ -3,13 +3,14 @@
     padding-bottom: 20px;
 }
 
-.jumbotron {
-    background-image: url('slide1.jpg');
-    background-position-y: -100px;
-}
-
 #weather ul{
     list-style: none;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.table.borderless td{
+    border-top: none;
 }
 
 #location-map{

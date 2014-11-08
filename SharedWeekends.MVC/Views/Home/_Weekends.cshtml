@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.WeekendViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-3 col-lg-3 col-md-3">
+        <div class="thumbnail">
+            <img src="@item.PictureUrl" alt="">
+            <div class="caption">
+                <div class="col-md-12">
+                    <span class="pull-right">BGN @item.PricePerPerson</span>
+                </div>
+                <div class="col-md-12">
+                    <h4>
+                        <a href="~/Details/Index/@item.Id">@item.Title</a>
+                    </h4>
+                    <p>@(item.Content.Length > 90 ? item.Content.Substring(0, 90) + "..." : item.Content)</p>
+                </div>
+
+            </div>
+            <div class="ratings">
+                <p class="pull-right">@item.LikesCount reviews</p>
+                <p>
+                    @for (int i = 0; i < (int)item.Rating; i++)
+                    {
+                        <span class="glyphicon glyphicon-star"></span>
+                    }
+                    @for (int i = 0; i < 5 - (int)item.Rating; i++)
+                    {
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+

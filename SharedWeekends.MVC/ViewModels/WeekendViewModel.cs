@@ -9,15 +9,6 @@ using System.Web;
 
 namespace SharedWeekends.MVC.ViewModels
 {
-    public class HomeViewModel
-    {
-        public IEnumerable<WeekendViewModel> TopWeekends { get; set; }
-
-        public IEnumerable<TopUserViewModel> TopUsers { get; set; }
-
-        public IEnumerable<WeekendViewModel> LatestWeekends { get; set; }
-    }
-
     public class WeekendViewModel : IMapFrom<Weekend>, IHaveCustomMappings
     {
         public int Id { get; set; }
@@ -54,14 +45,5 @@ namespace SharedWeekends.MVC.ViewModels
                 .ForMember(m => m.LikesCount, opt => opt.MapFrom(w => w.Likes.Count()))
                 .ForMember(m => m.Category, opt => opt.MapFrom(w => w.Category.Name));
         }
-    }
-
-    public class TopUserViewModel : IMapFrom<User>
-    {
-        public string Username { get; set; }
-
-        public int Rating { get; set; }
-
-        public string AvatarUrl { get; set; }
     }
 }
