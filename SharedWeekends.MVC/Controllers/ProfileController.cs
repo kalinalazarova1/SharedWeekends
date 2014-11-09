@@ -81,5 +81,45 @@ namespace SharedWeekends.MVC.Controllers
             @ViewBag.Selected = category;
             return PartialView("_Categories", categories);
         }
+
+        [ChildActionOnly]
+        public ActionResult GetMyReviews()
+        {
+            var userId = User.Identity.GetUserId();
+            var my = Data.Likes.All()
+                .Where(l => l.VoterId == userId)
+                .OrderByDescending(l => l.CreationDate)
+                .Project()
+                .To<LikeViewModel>();
+
+            return PartialView("_MyReviews", my);
+        }
+
+        [HttpGet]
+        public ActionResult EditReview(int id)
+        {
+            var review = Data.Likes.All().Project().To<LikeViewModel>().FirstOrDefault(l => l.Id == id);
+            return View("MyReviewEdit", review);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditReview(LikeViewModel like)
+        {
+            if (ModelState.IsValid)
+            {
+                var editedLike = Data.Likes
+                    .All()
+                    .FirstOrDefault(l => l.Id == like.Id);
+
+                editedLike.Stars = like.Stars;
+                editedLike.Comment = like.Comment;
+                
+                Data.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

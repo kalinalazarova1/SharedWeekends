@@ -1,32 +1,36 @@
 ﻿function initialize() {
     var elem = document.getElementById('location-map');
-    var lat = Number(elem.getAttribute('data-lat'));
-    var lon = Number(elem.getAttribute('data-lon'));
-    var title = elem.getAttribute('data-title');
-    var myLatlng = new google.maps.LatLng(lat, lon);
-    var mapOptions = {
-        zoom: 12,
-        center: myLatlng
-    };
+    if (elem) {
+        var lat = Number(elem.getAttribute('data-lat'));
+        var lon = Number(elem.getAttribute('data-lon'));
+        var title = elem.getAttribute('data-title');
+        var myLatlng = new google.maps.LatLng(lat, lon);
+        var mapOptions = {
+            zoom: 12,
+            center: myLatlng
+        };
 
-    var map = new google.maps.Map(elem, mapOptions);
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: title
-    });
+        var map = new google.maps.Map(elem, mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: title
+        });
+    }
 }
 
 function toggleForm() {
     var reviewForm = document.getElementById('review-form');
-    var button = document.getElementById('review');
-    if (reviewForm.style.display == '' || reviewForm.style.display == 'none') {
-        reviewForm.style.display = 'block';
-        button.innerText = 'Hide Review';
-        loadStarControl();
-    } else {
-        reviewForm.style.display = 'none';
-        button.innerText = 'Leave a Review';
+    if (reviewForm) {
+        var button = document.getElementById('review');
+        if (reviewForm.style.display == '' || reviewForm.style.display == 'none') {
+            reviewForm.style.display = 'block';
+            button.innerText = 'Hide Review';
+            loadStarControl();
+        } else {
+            reviewForm.style.display = 'none';
+            button.innerText = 'Leave a Review';
+        }
     }
 }
 
@@ -37,7 +41,11 @@ function loadScript() {
         'callback=initialize';
     document.body.appendChild(script);
     var button = document.getElementById('review');
-    button.addEventListener('click', toggleForm);
+    if (button) {
+        button.addEventListener('click', toggleForm);
+    } else {
+        loadStarControl();
+    }
 }
 
 window.onload = loadScript;

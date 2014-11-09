@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.LikeViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            Weekend
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            Created On
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="Details/Index/@item.WeekendId">@Html.DisplayFor(modelItem => item.WeekendTitle)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stars)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditReview", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

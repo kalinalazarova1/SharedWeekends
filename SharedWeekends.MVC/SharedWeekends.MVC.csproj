@@ -305,6 +305,8 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\MyWeekendEdit.cshtml" />
     <Content Include="Views\Profile\_MyWeekendsList.cshtml" />
+    <Content Include="Views\Profile\_MyReviews.cshtml" />
+    <Content Include="Views\Profile\MyReviewEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
