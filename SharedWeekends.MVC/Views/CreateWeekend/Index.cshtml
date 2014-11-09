@@ -25,9 +25,10 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.PictureUrl, "PictureUrl", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-lg-10">
+            <div class="col-lg-6">
                 @Html.TextBoxFor(m => m.PictureUrl, "PictureUrl", new { @class = "form-control", value = @"~\Content\default.jpg" })
             </div>
+            <div class="col-lg-2"><img src="" /></div>
         </div>
         <div class="form-group">
             <div class="control-label col-md-2">Map</div>

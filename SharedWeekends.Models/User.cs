@@ -14,10 +14,13 @@
 
         private ICollection<Like> likes;
 
+        private ICollection<Message> messages;
+
         public User()
         {
             this.weekends = new HashSet<Weekend>();
             this.likes = new HashSet<Like>();
+            this.messages = new HashSet<Message>();
         }
 
         public virtual ICollection<Weekend> Weekends 
@@ -29,6 +32,18 @@
             set
             {
                 this.weekends = value;
+            }
+        }
+
+        public virtual ICollection<Message> Messages
+        {
+            get
+            {
+                return this.messages;
+            }
+            set
+            {
+                this.messages = value;
             }
         }
 

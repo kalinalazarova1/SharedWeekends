@@ -2,9 +2,18 @@
 
 @{
     var categories = new List<SelectListItem>();
+    if(ViewBag.Selected != null)
+    {
+        categories.Add(new SelectListItem() { Value = Model.FirstOrDefault(c => c.Name == ViewBag.Selected).Id.ToString(), Text = ViewBag.Selected });
+        
+    }
+    
     foreach (var category in Model)
     {
-        categories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+        if (category.Name != ViewBag.Selected)
+        {
+            categories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });    
+        }
     }
 }
 

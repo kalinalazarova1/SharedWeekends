@@ -1,4 +1,5 @@
 ﻿using SharedWeekends.Data;
+using SharedWeekends.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SharedWeekends.MVC.Controllers
     {
         public BaseController(IWeekendsData data)
         {
-            Data = data;
+            this.Data = data;
         }
 
         protected IWeekendsData Data { get; set; }

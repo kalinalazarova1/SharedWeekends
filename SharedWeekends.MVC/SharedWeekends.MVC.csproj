@@ -213,6 +213,7 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\WeekendViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.yeti.css" />
     <Content Include="Content\bootstrap.yeti.min.css" />
+    <Content Include="Content\default-avatar.jpg" />
     <Content Include="Content\default.jpg" />
     <Content Include="Content\goals.png" />
     <Content Include="Content\shop-homepage.css" />
@@ -295,17 +297,19 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CreateWeekend\Index.cshtml" />
-    <Content Include="Views\CreateWeekend\_Categories.cshtml" />
+    <Content Include="Views\Shared\_Categories.cshtml" />
     <Content Include="Views\Details\Index.cshtml" />
     <Content Include="Views\Details\_Likes.cshtml" />
     <Content Include="Views\Details\_CreateLike.cshtml" />
     <Content Include="Views\Home\_Weekends.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\MyWeekendEdit.cshtml" />
+    <Content Include="Views\Profile\_MyWeekendsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

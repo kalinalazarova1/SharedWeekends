@@ -14,7 +14,9 @@
 
         public string Sender { get; set; }
 
-        public string Receiver { get; set; }
+        public string ReceiverId { get; set; }
+
+        public virtual User Receiver { get; set; }
 
         [Required]
         public DateTime CreationDate { get; set; }

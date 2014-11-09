@@ -57,7 +57,7 @@ namespace SharedWeekends.Data.Migrations
 
             db.Messages.Add(message);
             message.Sender = userAdmin.UserName;
-            message.Receiver = userMod.UserName;
+            message.ReceiverId = userMod.Id;
 
             db.SaveChanges();
 

@@ -1,0 +1,68 @@
+﻿@model SharedWeekends.MVC.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    User Profile.
+</h3>
+<div class="container">
+    <ul class="col-md-3 list-group text-center">
+        <li class="list-group-item">
+            @if (Model.Avatar != null)
+            {
+                <img src="@Model.Avatar" class="img-thumbnail" alt="Avatar" />
+            }
+            else
+            {
+                <img src="../../Content/default-avatar.jpg" class="img-thumbnail" alt="Avatar" />
+            }
+        </li>
+        <li class="list-group-item">
+            <i class="glyphicon glyphicon-user pull-left"></i>
+            Username: @Model.Username
+        </li>
+        <li class="list-group-item">
+            <i class="glyphicon glyphicon-star pull-left"></i>
+            Rating: @Model.Rating points
+        </li>
+        <li class="list-group-item">
+            <i class="glyphicon glyphicon-list pull-left"></i>
+            <a href="#">
+                <strong class="list-group-item-text">Messages</strong>
+            </a>
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-danger"><span class="badge">@Model.UnreadMessages</span>Unread Messages</li>
+                <li class="list-group-item list-group-item-success"><span class="badge">@Model.ReadMessages</span>Read Messages</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="col-md-9">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    My Reviews
+                </div>
+                <div class="panel-body">
+                    Reviews created by the user.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    My Shared Weekends
+                </div>
+                <div class="panel-body">
+                    @Html.Action("GetMyWeekends")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

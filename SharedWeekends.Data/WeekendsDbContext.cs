@@ -36,6 +36,5 @@
         {
             return base.Set<TEntity>();
         }
-
     }
 }
