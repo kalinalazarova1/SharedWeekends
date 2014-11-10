@@ -1,0 +1,41 @@
+﻿@model SharedWeekends.MVC.ViewModels.MessageViewModel
+
+<div>
+    @if (Model != null)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                From:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sender)
+            </dd>
+
+            <dt>
+                To:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Receiver)
+            </dd>
+
+            <dt>
+                Sent:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreationDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Content):
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+        </dl>
+    }
+</div>

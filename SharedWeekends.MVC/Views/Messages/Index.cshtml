@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.MessageViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Messages.</h2>
+<div class="row">
+    <div class="col-md-10">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#received" data-toggle="tab" aria-expanded="true">Received</a></li>
+            <li class=""><a href="#sent" data-toggle="tab" aria-expanded="false">Sent</a></li>
+            <li class=""><a href="#new" data-toggle="tab" aria-expanded="false">Compose Message</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content thumbnail">
+            <div class="tab-pane fade active in" id="received">
+                @Html.Action("GetMessages")
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Received Message Details</h3>
+                    </div>
+                    <div class="panel-body" id="msgDetails">
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="sent">
+                @Html.Action("GetSentMessages")
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sent Message Details</h3>
+                    </div>
+                    <div class="panel-body" id="sentMsgDetails">
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="new">
+                @Html.Action("CreateMessageForm")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

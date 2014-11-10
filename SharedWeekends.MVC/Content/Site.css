@@ -19,6 +19,10 @@
     margin: 10px;
 }
 
+.bold{
+    font-weight: bold;
+}
+
 #review-form{
     display: none;
 }

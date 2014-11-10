@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.MessageViewModel>
+
+<table class="table table-hover table-striped table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.IsRead)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
+                    new AjaxOptions()
+                    {
+                        UpdateTargetId = "msgDetails",
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace
+                    })
+                </td>
+
+
+            </tr>
+        }
+        else
+        {
+            <tr class="bold">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                            @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
+                    new AjaxOptions()
+                    {
+                        UpdateTargetId = "msgDetails",
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace
+                    })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
