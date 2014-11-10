@@ -3,7 +3,7 @@
 <table class="table table-hover table-striped table-condensed">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Sender)
+            From
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreationDate)
@@ -14,49 +14,26 @@
 
     @foreach (var item in Model)
     {
-        if (item.IsRead)
+        
+        <tr class='@(!item.IsRead ? "bold" : "")'>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Sender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
+        new AjaxOptions()
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreationDate)
-                </td>
-                <td>
-                    @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
-                    new AjaxOptions()
-                    {
-                        UpdateTargetId = "msgDetails",
-                        HttpMethod = "GET",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </td>
-
-
-            </tr>
-        }
-        else
-        {
-            <tr class="bold">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreationDate)
-                </td>
-                <td>
-                            @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
-                    new AjaxOptions()
-                    {
-                        UpdateTargetId = "msgDetails",
-                        HttpMethod = "GET",
-                        InsertionMode = InsertionMode.Replace
-                    })
+            UpdateTargetId = "msgDetails",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace
+        })
                 </td>
             </tr>
-        }
     }
-
 </table>
+
 
