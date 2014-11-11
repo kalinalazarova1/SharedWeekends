@@ -9,6 +9,9 @@
             @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
         </th>
     </tr>
 
@@ -20,6 +23,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
             </td>
             <td>
                 @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },

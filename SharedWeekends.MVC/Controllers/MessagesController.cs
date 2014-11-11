@@ -79,6 +79,7 @@ namespace SharedWeekends.MVC.Controllers
             {
                 var msg = new Message();
                 msg.Content = model.Content;
+                msg.Subject = model.Subject;
                 msg.CreationDate = DateTime.Now;
                 msg.IsRead = false;
                 msg.Sender = User.Identity.Name;

@@ -4,6 +4,7 @@ using SharedWeekends.Models;
 using SharedWeekends.MVC.Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,8 @@ namespace SharedWeekends.MVC.ViewModels
         public string Receiver { get; set; }
 
         public DateTime CreationDate { get; set; }
+
+        public string Subject { get; set; }
 
         public string Content { get; set; }
 

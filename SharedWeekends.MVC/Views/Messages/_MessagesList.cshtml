@@ -9,30 +9,36 @@
             @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        
+
         <tr class='@(!item.IsRead ? "bold" : "")'>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Sender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
         new AjaxOptions()
         {
             UpdateTargetId = "msgDetails",
             HttpMethod = "GET",
             InsertionMode = InsertionMode.Replace
         })
-        </td>
-    </tr>
+            </td>
+        </tr>
     }
 </table>
 

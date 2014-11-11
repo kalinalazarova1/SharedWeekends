@@ -326,6 +326,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo\jquery.min.js" />
+    <Content Include="Scripts\kendo\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\map-control.js" />
     <Content Include="Scripts\map.js" />
     <Content Include="Scripts\messages.js" />
@@ -391,12 +394,14 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\_CategoriesList.cshtml" />
     <Content Include="Views\Search\_Weekends.cshtml" />
+    <Content Include="Scripts\kendo\jquery.min.map" />
+    <Content Include="Scripts\kendo\kendo.all.min.js.map" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Libraries\" />
-    <Folder Include="Scripts\kendo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
