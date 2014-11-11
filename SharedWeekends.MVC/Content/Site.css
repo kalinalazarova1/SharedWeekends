@@ -19,6 +19,11 @@
     margin: 10px;
 }
 
+.thumbnail img{
+    width: 144px;
+    height: 192px;
+}
+
 .bold{
     font-weight: bold;
 }

@@ -7,8 +7,10 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.ComponentModel.DataAnnotations;
+    using SharedWeekends.Data.Common.Models;
+    using System;
     
-    public class User : IdentityUser
+    public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<Weekend> weekends;
 
@@ -21,6 +23,8 @@
             this.weekends = new HashSet<Weekend>();
             this.likes = new HashSet<Like>();
             this.messages = new HashSet<Message>();
+            // This will prevent UserManager.CreateAsync from causing exception
+            this.CreatedOn = DateTime.Now;
         }
 
         public virtual ICollection<Weekend> Weekends 
@@ -71,5 +75,15 @@
             // Add custom user claims here
             return userIdentity;
         }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
     }
 }

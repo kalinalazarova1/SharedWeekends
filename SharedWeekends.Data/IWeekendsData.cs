@@ -1,23 +1,25 @@
 ﻿namespace SharedWeekends.Data
 {
-    using SharedWeekends.Data.Repositories;
+    using SharedWeekends.Data.Common.Models;
+    using SharedWeekends.Data.Common.Repositories;
+    using SharedWeekends.Data.Common.Repository;
     using SharedWeekends.Models;
 
     public interface IWeekendsData
     {
-        IRepository<Weekend> Weekends { get; }
+        IDeletableEntityRepository<Weekend> Weekends { get; }
 
-        IRepository<Category> Categories { get; }
+        IDeletableEntityRepository<Category> Categories { get; }
 
-        IRepository<User> Users { get; }
+        IDeletableEntityRepository<User> Users { get; }
 
-        IRepository<Message> Messages { get; }
+        IDeletableEntityRepository<Message> Messages { get; }
 
-        IRepository<Like> Likes { get; }
+        IDeletableEntityRepository<Like> Likes { get; }
 
-        IRepository<T> GetRepository<T>() where T : class;
+        IDeletableEntityRepository<T> GetRepository<T>() where T : class, IDeletableEntity;
 
-        void SaveChanges();
+        int SaveChanges();
 
     }
 }

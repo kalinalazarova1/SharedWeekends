@@ -1,9 +1,10 @@
 ﻿namespace SharedWeekends.Models
 {
+    using SharedWeekends.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Message
+    public class Message: AuditInfo, IDeletableEntity
     {
         public Message()
         {
@@ -26,5 +27,9 @@
 
         [Required]
         public bool IsRead { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

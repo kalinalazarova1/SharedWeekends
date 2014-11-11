@@ -55,8 +55,6 @@
     <Compile Include="IWeekendsData.cs" />
     <Compile Include="IWeekendsDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositiries\Repository.cs" />
-    <Compile Include="Repositiries\IRepository.cs" />
     <Compile Include="WeekendsData.cs" />
     <Compile Include="WeekendsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,10 +64,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharedWeekends.Data.Common\SharedWeekends.Data.Common.csproj">
+      <Project>{89d5b195-951a-4680-a115-2f41141717b9}</Project>
+      <Name>SharedWeekends.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedWeekends.Models\SharedWeekends.Models.csproj">
       <Project>{56325b1a-b749-4f8a-83ad-0468c5054a76}</Project>
       <Name>SharedWeekends.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositiries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

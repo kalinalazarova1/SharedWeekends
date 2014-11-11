@@ -1,0 +1,21 @@
+﻿@model SharedWeekends.MVC.ViewModels.WeekendViewModel
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Weekends.</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                @Html.Action("GetCategories")
+            </div>
+        </div>
+        <div class="col-md-9" id="main">
+            @Html.Action("FilterByCategory", new { id = 0 })
+            </div>
+        </div>
+    </div>
+</div>

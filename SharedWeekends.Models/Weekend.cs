@@ -1,10 +1,11 @@
 ﻿namespace SharedWeekends.Models
 {
+    using SharedWeekends.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Weekend
+    public class Weekend: AuditInfo, IDeletableEntity
     {
         private ICollection<Like> likes;
 
@@ -53,5 +54,9 @@
                 this.likes = value;
             }
         }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

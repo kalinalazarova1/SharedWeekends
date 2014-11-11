@@ -1,0 +1,23 @@
+﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.CategoryViewModel>
+
+<div class="list-group">
+    @Ajax.ActionLink("All weekends", "FilterByCategory", new { id = 0 },
+        new AjaxOptions()
+        {
+            UpdateTargetId = "main",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace
+        }, new { @class = "list-group-item" })
+
+    @foreach (var item in Model)
+    {
+        @Ajax.ActionLink(item.Name, "FilterByCategory", new { id = item.Id },
+        new AjaxOptions()
+        {
+            UpdateTargetId = "main",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace
+        }, new { @class="list-group-item" })
+    }
+</div>
+

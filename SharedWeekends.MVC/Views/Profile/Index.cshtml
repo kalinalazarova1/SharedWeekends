@@ -39,30 +39,19 @@
             </ul>
         </li>
     </ul>
-
-    <div class="col-md-9">
-        <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    My Reviews
+        <div class="col-md-9">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#myWeekends" data-toggle="tab">My Shared Weekends</a></li>
+                <li><a href="#myReviews" data-toggle="tab">My Reviews</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="myWeekends">
+                    @Html.Action("GetMyWeekends")
                 </div>
-                <div class="panel-body">
+                <div class="tab-pane fade" id="myReviews">
                     @Html.Action("GetMyReviews")
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    My Shared Weekends
-                </div>
-                <div class="panel-body">
-                    @Html.Action("GetMyWeekends")
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 

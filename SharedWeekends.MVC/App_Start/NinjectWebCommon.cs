@@ -62,7 +62,7 @@ namespace SharedWeekends.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IWeekendsData>().To<WeekendsData>();
+            kernel.Bind<IWeekendsData>().To<WeekendsData>().WithConstructorArgument(new WeekendsDbContext());
         }        
     }
 }

@@ -16,7 +16,15 @@ namespace SharedWeekends.MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "SharedWeekends.MVC.Controllers"}
+            );
+
+            routes.MapRoute(
+                name: "Static",
+                url: "{action}",
+                defaults: new { controller = "Home" },
+                namespaces: new[] { "SharedWeekends.MVC.Controllers" }
             );
         }
     }

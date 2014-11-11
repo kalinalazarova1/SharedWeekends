@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharedWeekends.Data.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SharedWeekends.Models
 {
-    public class Like
+    public class Like: AuditInfo, IDeletableEntity
     {
         public int Id { get; set; }
 
@@ -25,5 +26,9 @@ namespace SharedWeekends.Models
         public virtual User Voter { get; set; }
 
         public string VoterId { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

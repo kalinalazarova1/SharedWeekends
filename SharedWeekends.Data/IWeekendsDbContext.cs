@@ -17,7 +17,7 @@
 
         IDbSet<User> Users { get; set; }
 
-        void SaveChanges();
+        int SaveChanges();
 
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
 
