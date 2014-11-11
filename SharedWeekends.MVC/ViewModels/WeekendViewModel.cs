@@ -3,24 +3,31 @@ using SharedWeekends.Models;
 using SharedWeekends.MVC.Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SharedWeekends.MVC.ViewModels
 {
     public class WeekendViewModel : IMapFrom<Weekend>, IHaveCustomMappings
     {
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         public string PictureUrl { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Content { get; set; }
 
+        [Required]
         public string Category { get; set; }
 
+        [Required]
         public string Author { get; set; }
 
         public int Rating { get; set; }

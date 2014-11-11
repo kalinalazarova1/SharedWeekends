@@ -195,7 +195,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdministrationViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\CategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\LikeViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\MessageViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\WeekendViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CreateWeekendController.cs" />
@@ -400,7 +407,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
