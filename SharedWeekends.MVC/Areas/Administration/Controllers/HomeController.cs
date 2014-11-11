@@ -9,8 +9,13 @@ using SharedWeekends.MVC.ViewModels;
 
 namespace SharedWeekends.MVC.Areas.Administration.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AdminController
     {
+        public HomeController(IWeekendsData data)
+            : base(data)
+        {
+        }
+
         // GET: Administration/Home
         public ActionResult Index()
         {
