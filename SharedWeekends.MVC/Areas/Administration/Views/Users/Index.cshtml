@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users Administration</h2>
+@(Html.Kendo()
+    .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.UserViewModel>()
+    .Name("grid-books")
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.Id);
+        columns.Bound(model => model.UserName);
+        columns.Bound(model => model.Rating);
+        columns.Bound(model => model.CreatedOn);
+        columns.Bound(model => model.ModifiedOn);
+        columns.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            });
+    })
+    .ToolBar(tool =>
+        {
+            tool.Create();
+        })
+    .Pageable(page =>
+        {
+            page.PreviousNext(true);
+            page.Numeric(true);
+        })
+    .Sortable(sort =>
+        {
+            sort.AllowUnsort(false);
+            sort.SortMode(GridSortMode.SingleColumn);
+        })
+    .Groupable()
+    .Filterable()
+    .Resizable(resize => resize.Columns(true))
+    .Navigatable()
+    .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.PopUp);
+        })
+    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+    .Events(ev =>
+        {
+            ev.Change("selectRow");
+        })
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(b => b.Id))
+            .PageSize(10)
+            .ServerOperation(true)
+            .Events(ev => ev.Error("errorAlert"))
+            .Create("CreateUser", "Users")
+            .Read("ReadUsers", "Users")
+            .Update("UpdateUser", "Users")
+            .Destroy("DeleteUser", "Users");
+    }))
+
+<div id="selected">
+
+</div>
+
+<script>
+    function selectRow()
+    {
+        var selected = $.map(this.select(), function (item) {
+            return $(item).text();
+        });
+
+        $('#selected').text(selected);
+    }
+
+    function errorAlert() {
+        console.log("An error ocurred");
+    }
+</script>
