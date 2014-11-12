@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.MessageViewModel>
+﻿@model IEnumerable<SharedWeekends.MVC.Areas.UserCommunication.ViewModels.MessageViewModel>
 
 <table class="table table-hover table-striped table-condensed">
     <tr>
@@ -30,7 +30,7 @@
                 @Html.DisplayFor(modelItem => item.Subject)
             </td>
             <td>
-                @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id },
+                @Ajax.ActionLink("Show", "MessageDetails", new { id = item.Id, area = "UserCommunication" },
         new AjaxOptions()
         {
             UpdateTargetId = "msgDetails",

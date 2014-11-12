@@ -9,9 +9,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SharedWeekends.MVC.ViewModels
+namespace SharedWeekends.MVC.Areas.UserCommunication.ViewModels
 {
-    public class MessageViewModel: IMapFrom<Message>, IHaveCustomMappings
+    public class MessageViewModel : IMapFrom<Message>, IHaveCustomMappings
     {
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; }

@@ -1,4 +1,4 @@
-﻿@model SharedWeekends.MVC.ViewModels.MessageViewModel
+﻿@model SharedWeekends.MVC.Areas.UserCommunication.ViewModels.MessageViewModel
 
 
 @using (Html.BeginForm()) 
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-primary" />
-                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Cancel", "Index", new { area = "Messages" }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>

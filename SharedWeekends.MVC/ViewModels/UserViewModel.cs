@@ -25,8 +25,8 @@ namespace SharedWeekends.MVC.ViewModels
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<User, UserViewModel>()
-                .ForMember(m => m.UnreadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => !m.IsRead)))
-                .ForMember(m => m.ReadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => m.IsRead)));
+                .ForMember(m => m.UnreadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => !m.IsRead && !m.IsDeleted)))
+                .ForMember(m => m.ReadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => m.IsRead && !m.IsDeleted)));
         }
     }
 }

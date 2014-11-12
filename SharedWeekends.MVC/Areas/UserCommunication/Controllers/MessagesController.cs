@@ -1,14 +1,15 @@
 ﻿using SharedWeekends.Data;
+using SharedWeekends.MVC.Controllers;
+using SharedWeekends.MVC.Areas.UserCommunication.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
-using SharedWeekends.MVC.ViewModels;
 using SharedWeekends.Models;
 
-namespace SharedWeekends.MVC.Controllers
+namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
 {
     public class MessagesController : BaseController
     {
@@ -17,7 +18,6 @@ namespace SharedWeekends.MVC.Controllers
         {
         }
 
-        // GET: Messages
         public ActionResult Index()
         {
             return View();
@@ -62,7 +62,7 @@ namespace SharedWeekends.MVC.Controllers
             var dbMsg = Data.Messages.All().FirstOrDefault(m => m.Id.ToString() == id);
             dbMsg.IsRead = true;
             Data.SaveChanges();
-            
+
             return PartialView("_MessageDetails", msg);
         }
 
@@ -75,7 +75,7 @@ namespace SharedWeekends.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(MessageViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var msg = new Message();
                 msg.Content = model.Content;

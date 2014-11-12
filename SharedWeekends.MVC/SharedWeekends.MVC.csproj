@@ -207,13 +207,16 @@
     <Compile Include="Areas\Administration\ViewModels\MessageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\WeekendViewModel.cs" />
+    <Compile Include="Areas\UserCommunication\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\UserCommunication\Controllers\MessagesController.cs" />
+    <Compile Include="Areas\UserCommunication\UserCommunicationAreaRegistration.cs" />
+    <Compile Include="Areas\UserCommunication\ViewModels\MessagesViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CreateWeekendController.cs" />
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,7 +228,6 @@
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\TopUserViewModel.cs" />
     <Compile Include="ViewModels\LikeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -342,6 +344,9 @@
     <Content Include="Areas\Administration\Views\Weekends\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\web.config" />
+    <Content Include="Areas\UserCommunication\Views\Default\Index.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\Messages\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -415,11 +420,10 @@
     <Content Include="Views\Profile\_MyWeekendsList.cshtml" />
     <Content Include="Views\Profile\_MyReviews.cshtml" />
     <Content Include="Views\Profile\MyReviewEdit.cshtml" />
-    <Content Include="Views\Messages\Index.cshtml" />
-    <Content Include="Views\Messages\_MessagesList.cshtml" />
-    <Content Include="Views\Messages\_MessageDetails.cshtml" />
-    <Content Include="Views\Messages\_SentMessagesList.cshtml" />
-    <Content Include="Views\Messages\_CreateMessage.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\Messages\_MessagesList.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\Messages\_MessageDetails.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\Messages\_SentMessagesList.cshtml" />
+    <Content Include="Areas\UserCommunication\Views\Messages\_CreateMessage.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\_CategoriesList.cshtml" />
     <Content Include="Views\Search\_Weekends.cshtml" />
@@ -429,6 +433,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\UserCommunication\Views\Shared\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>

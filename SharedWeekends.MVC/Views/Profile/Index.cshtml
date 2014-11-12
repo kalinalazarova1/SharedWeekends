@@ -29,10 +29,7 @@
         </li>
         <li class="list-group-item">
             <i class="glyphicon glyphicon-list pull-left"></i>
-            <a href="~/Messages/Index">
-                <strong class="list-group-item-text">Messages</strong>
-            </a>
-
+            @Html.ActionLink("Messages", "Index", "Messages", new { area = "UserCommunication" }, new { @class = "list-group-item-text" })
             <ul class="list-group">
                 <li class="list-group-item list-group-item-danger"><span class="badge">@Model.UnreadMessages</span>Unread Messages</li>
                 <li class="list-group-item list-group-item-success"><span class="badge">@Model.ReadMessages</span>Read Messages</li>
