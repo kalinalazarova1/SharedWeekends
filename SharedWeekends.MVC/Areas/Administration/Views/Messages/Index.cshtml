@@ -4,7 +4,6 @@
 }
 
 <h2>Messages Administration</h2>
-
 @(Html.Kendo()
     .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.MessageViewModel>()
     .Name("grid-messages")
@@ -16,14 +15,15 @@
         columns.Bound(model => model.Content);
         columns.Bound(model => model.Receiver);
         columns.Bound(model => model.IsRead);
-        columns.Bound(model => model.CreatedOn);
-        columns.Bound(model => model.ModifiedOn);
+        columns.Bound(model => model.CreatedOn).Hidden();
+        columns.Bound(model => model.ModifiedOn).Hidden();
         columns.Command(command =>
             {
                 command.Edit();
                 command.Destroy();
             });
     })
+    .ColumnMenu()
     .ToolBar(tool =>
         {
             tool.Create();

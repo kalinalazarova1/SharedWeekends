@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Weekends Administration</h2>
+@(Html.Kendo()
+    .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.WeekendViewModel>()
+    .Name("grid-weekends")
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.Id).Hidden();
+        columns.Bound(model => model.Title);
+        columns.Bound(model => model.Author);
+        columns.Bound(model => model.Category);
+        columns.Bound(model => model.Content).Hidden();
+        columns.Bound(model => model.CreationDate);
+        columns.Bound(model => model.Lattitude).Hidden();
+        columns.Bound(model => model.Longitude).Hidden();
+        columns.Bound(model => model.PeopleCount);
+        columns.Bound(model => model.PricePerPerson);
+        columns.Bound(model => model.PictureUrl).Hidden();
+        columns.Bound(model => model.CreatedOn).Hidden();
+        columns.Bound(model => model.ModifiedOn).Hidden();
+        columns.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            });
+    })
+            .ColumnMenu()
+            .ToolBar(tool =>
+                {
+                    tool.Create();
+                })
+            .Pageable(page =>
+                {
+                    page.PreviousNext(true);
+                    page.Numeric(true);
+                    page.Refresh(true);
+                })
+            .Sortable(sort =>
+                {
+                    sort.AllowUnsort(false);
+                    sort.SortMode(GridSortMode.SingleColumn);
+                })
+            .Groupable()
+            .Filterable()
+            .Resizable(resize => resize.Columns(true))
+            .Navigatable()
+            .Editable(edit =>
+                {
+                    edit.Mode(GridEditMode.PopUp);
+                })
+            .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+            .Events(ev =>
+                {
+                    ev.Change("selectRow");
+                })
+            .DataSource(data =>
+            {
+                data.Ajax()
+                    .Model(m => m.Id(b => b.Id))
+                    .PageSize(10)
+                    .ServerOperation(true)
+                    .Events(ev => ev.Error("errorAlert"))
+                    .Create("CreateWeekend", "Weekends")
+                    .Read("ReadWeekends", "Weekends")
+                    .Update("UpdateWeekend", "Weekends")
+                    .Destroy("DeleteWeekend", "Weekends");
+            }))
+
+<div id="selected">
+
+</div>
+
+<script>
+    function selectRow()
+    {
+        var selected = $.map(this.select(), function (item) {
+            return $(item).text();
+        });
+
+        $('#selected').text(selected);
+    }
+
+    function errorAlert() {
+        console.log("An error ocurred");
+    }
+</script>

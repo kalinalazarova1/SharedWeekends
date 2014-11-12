@@ -16,6 +16,7 @@ namespace SharedWeekends.MVC.Controllers
         {
         }
 
+        [OutputCache(Duration = 10 * 60)]
         public ActionResult Index()
         {
             var users = Data.Users
@@ -34,6 +35,7 @@ namespace SharedWeekends.MVC.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetLatestWeekends()
         {
@@ -47,6 +49,7 @@ namespace SharedWeekends.MVC.Controllers
             return PartialView("_Weekends", latest);
         }
 
+        [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopWeekends()
         {

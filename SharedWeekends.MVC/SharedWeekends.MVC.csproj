@@ -339,6 +339,9 @@
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Messages\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Likes\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Weekends\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -426,7 +429,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Weekends\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
