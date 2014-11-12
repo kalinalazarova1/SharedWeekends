@@ -1,11 +1,11 @@
 ﻿namespace SharedWeekends.Data.Common.Repository
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
 
     using SharedWeekends.Data.Common.Models;
     using SharedWeekends.Data.Common.Repositories;
-    using System;
 
     public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
         where T : class, IDeletableEntity

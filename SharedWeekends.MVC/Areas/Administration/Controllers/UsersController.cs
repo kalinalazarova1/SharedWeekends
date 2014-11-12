@@ -46,13 +46,20 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             return Json(new[] { user }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult ReadUsers([DataSourceRequest]DataSourceRequest request)
         {
-            var result = this.Data.Users.All().Project().To<UserViewModel>();
+            var result = this.Data
+                .Users
+                .All()
+                .Project()
+                .To<UserViewModel>()
+                .ToDataSourceResult(request);
 
-            return Json(result.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(result);
         }
 
+        [HttpPost]
         public JsonResult UpdateUser([DataSourceRequest] DataSourceRequest request, UserViewModel user)
         {
             var existingUser = this.Data.Users.All().FirstOrDefault(x => x.Id == user.Id);
@@ -70,6 +77,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             return Json((new[] { user }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult DeleteUser([DataSourceRequest] DataSourceRequest request, UserViewModel user)
         {
             var existingUser = this.Data.Users.All().FirstOrDefault(x => x.Id == user.Id);

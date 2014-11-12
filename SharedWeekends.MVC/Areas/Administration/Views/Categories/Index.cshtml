@@ -3,17 +3,14 @@
     Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Users Administration</h2>
+<h2>Categories Administration</h2>
 @(Html.Kendo()
-    .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.UserViewModel>()
-    .Name("grid-users")
+    .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.CategoryViewModel>()
+    .Name("grid-categories")
     .Columns(columns =>
     {
         columns.Bound(model => model.Id).Hidden();
-        columns.Bound(model => model.UserName);
-        columns.Bound(model => model.Rating);
-        columns.Bound(model => model.CreatedOn);
-        columns.Bound(model => model.ModifiedOn);
+        columns.Bound(model => model.Name);
         columns.Command(command =>
             {
                 command.Edit();
@@ -55,10 +52,10 @@
             .PageSize(10)
             .ServerOperation(true)
             .Events(ev => ev.Error("errorAlert"))
-            .Create("CreateUser", "Users")
-            .Read("ReadUsers", "Users")
-            .Update("UpdateUser", "Users")
-            .Destroy("DeleteUser", "Users");
+            .Create("CreateCategory", "Categories")
+            .Read("ReadCategories", "Categories")
+            .Update("UpdateCategory", "Categories")
+            .Destroy("DeleteCategory", "Categories");
     }))
 
 <div id="selected">
