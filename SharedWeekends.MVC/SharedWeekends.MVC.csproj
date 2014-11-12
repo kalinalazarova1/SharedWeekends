@@ -326,7 +326,6 @@
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Date.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
@@ -338,6 +337,8 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Messages\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Likes\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -425,8 +426,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Likes\" />
-    <Folder Include="Areas\Administration\Views\Messages\" />
     <Folder Include="Areas\Administration\Views\Weekends\" />
     <Folder Include="Libraries\" />
   </ItemGroup>

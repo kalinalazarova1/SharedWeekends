@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Messages Administration</h2>
+
+@(Html.Kendo()
+    .Grid<SharedWeekends.MVC.Areas.Administration.ViewModels.MessageViewModel>()
+    .Name("grid-messages")
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.Id).Hidden();
+        columns.Bound(model => model.Sender);
+        columns.Bound(model => model.CreationDate);
+        columns.Bound(model => model.Content);
+        columns.Bound(model => model.Receiver);
+        columns.Bound(model => model.IsRead);
+        columns.Bound(model => model.CreatedOn);
+        columns.Bound(model => model.ModifiedOn);
+        columns.Command(command =>
+            {
+                command.Edit();
+                command.Destroy();
+            });
+    })
+    .ToolBar(tool =>
+        {
+            tool.Create();
+        })
+    .Pageable(page =>
+        {
+            page.PreviousNext(true);
+            page.Numeric(true);
+            page.Refresh(true);
+        })
+    .Sortable(sort =>
+        {
+            sort.AllowUnsort(false);
+            sort.SortMode(GridSortMode.SingleColumn);
+        })
+    .Groupable()
+    .Filterable()
+    .Resizable(resize => resize.Columns(true))
+    .Navigatable()
+    .Editable(edit =>
+        {
+            edit.Mode(GridEditMode.PopUp);
+        })
+    .Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
+    .Events(ev =>
+        {
+            ev.Change("selectRow");
+        })
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(b => b.Id))
+            .PageSize(5)
+            .ServerOperation(true)
+            .Events(ev => ev.Error("errorAlert"))
+            .Create("CreateMessage", "Messages")
+            .Read("ReadMessages", "Messages")
+            .Update("UpdateMessage", "Messages")
+            .Destroy("DeleteMessage", "Messages");
+    }))
+
+<div id="selected">
+
+</div>
+
+<script>
+    function selectRow()
+    {
+        var selected = $.map(this.select(), function (item) {
+            return $(item).text();
+        });
+
+        $('#selected').text(selected);
+    }
+
+    function errorAlert() {
+        console.log("An error ocurred");
+    }
+</script>
