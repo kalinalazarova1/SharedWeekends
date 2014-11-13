@@ -34,6 +34,11 @@ function toggleForm() {
     }
 }
 
+function hideOnSubmit() {
+    $('#review-form').hide();
+    $('#review').html('Leave a Review');
+}
+
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';

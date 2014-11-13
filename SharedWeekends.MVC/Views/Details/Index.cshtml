@@ -49,7 +49,9 @@
                         @Html.Action("CreateLikeForm", new { id = Model.Id })
                     </div>
                 </div>
-                @Html.Action("GetWeekendLikes", new { id = Model.Id })
+                <div id="allReviews">
+                    @Html.Action("GetWeekendLikes", new { id = Model.Id })
+                </div>
             </div>
         </div>
     </div>

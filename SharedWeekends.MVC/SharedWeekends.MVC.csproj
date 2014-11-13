@@ -342,8 +342,6 @@
     <Content Include="Areas\Administration\Views\Messages\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Likes\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Weekends\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Areas\UserCommunication\Views\web.config" />
     <Content Include="Areas\UserCommunication\Views\Default\Index.cshtml" />
     <Content Include="Areas\UserCommunication\Views\Messages\Index.cshtml" />
@@ -430,11 +428,14 @@
     <Content Include="Scripts\kendo\jquery.min.map" />
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Views\Details\_SingleLike.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Views\Shared\DisplayTemplates\" />
     <Folder Include="Areas\UserCommunication\Views\Shared\" />
     <Folder Include="Libraries\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

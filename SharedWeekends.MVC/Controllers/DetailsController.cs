@@ -46,10 +46,12 @@ namespace SharedWeekends.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                like.Voter = User.Identity.Name;
+                like.CreationDate = DateTime.Now;
                 var newLike = new Like()
                 {
                     Comment = like.Comment,
-                    CreationDate = DateTime.Now,
+                    CreationDate = like.CreationDate,
                     VoterId = User.Identity.GetUserId(),
                     Stars = like.Stars,
                     WeekendId = like.WeekendId
@@ -61,7 +63,7 @@ namespace SharedWeekends.MVC.Controllers
                 Data.SaveChanges();
             }
 
-            return Redirect("~/Details/Index/" + like.WeekendId);
+            return PartialView("_SingleLike", like);
         }
     }
 }

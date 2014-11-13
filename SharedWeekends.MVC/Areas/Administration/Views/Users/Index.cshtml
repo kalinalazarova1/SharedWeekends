@@ -12,8 +12,8 @@
         columns.Bound(model => model.Id).Hidden();
         columns.Bound(model => model.UserName);
         columns.Bound(model => model.Rating);
-        columns.Bound(model => model.CreatedOn);
-        columns.Bound(model => model.ModifiedOn);
+        columns.Bound(model => model.CreatedOn).Format("{0:dd.MM.yyyy}");
+        columns.Bound(model => model.ModifiedOn).Format("{0:dd.MM.yyyy}");
         columns.Command(command =>
             {
                 command.Edit();

@@ -1,5 +1,10 @@
 ﻿@model SharedWeekends.MVC.ViewModels.LikeViewModel
-@using (Html.BeginForm("CreateLike", "Details", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Ajax.BeginForm("CreateLike", "Details", null, new AjaxOptions{
+    UpdateTargetId = "allReviews",
+    InsertionMode = InsertionMode.InsertAfter,
+    HttpMethod = "POST",
+    OnSuccess = "hideOnSubmit"
+}, new { @class = "form-horizontal", id = "createLikeForm" }))
 {
     @Html.AntiForgeryToken()
     <form class="form-horizontal">

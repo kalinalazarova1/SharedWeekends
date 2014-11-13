@@ -12,7 +12,7 @@
     {
         columns.Bound(model => model.Id).Hidden();
         columns.Bound(model => model.Voter);
-        columns.Bound(model => model.CreationDate);
+        columns.Bound(model => model.CreationDate).Format("{0:dd.MM.yyyy}");
         columns.Bound(model => model.Weekend);
         columns.Bound(model => model.Stars);
         columns.Bound(model => model.Comment);

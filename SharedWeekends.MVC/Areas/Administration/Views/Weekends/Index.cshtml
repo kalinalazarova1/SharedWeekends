@@ -14,14 +14,14 @@
         columns.Bound(model => model.Author);
         columns.Bound(model => model.Category);
         columns.Bound(model => model.Content).Hidden();
-        columns.Bound(model => model.CreationDate);
+        columns.Bound(model => model.CreationDate).Format("{0:dd.MM.yyyy}");
         columns.Bound(model => model.Lattitude).Hidden();
         columns.Bound(model => model.Longitude).Hidden();
         columns.Bound(model => model.PeopleCount);
         columns.Bound(model => model.PricePerPerson);
         columns.Bound(model => model.PictureUrl).Hidden();
-        columns.Bound(model => model.CreatedOn).Hidden();
-        columns.Bound(model => model.ModifiedOn).Hidden();
+        columns.Bound(model => model.CreatedOn).Format("{0:dd.MM.yyyy}").Hidden();
+        columns.Bound(model => model.ModifiedOn).Format("{0:dd.MM.yyyy}").Hidden();
         columns.Command(command =>
             {
                 command.Edit();

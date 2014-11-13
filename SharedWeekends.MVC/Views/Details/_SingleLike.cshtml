@@ -1,0 +1,19 @@
+﻿@model SharedWeekends.MVC.ViewModels.LikeViewModel
+
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        @for (int i = 0; i < Model.Stars; i++)
+        {
+            <span class="glyphicon glyphicon-star"></span>
+        }
+        @for (int i = 0; i < 5 - Model.Stars; i++)
+        {
+            <span class="glyphicon glyphicon-star-empty"></span>
+        }
+
+        @Model.Voter
+        <span class="pull-right">@((int)(DateTime.Now - Model.CreationDate).TotalDays == 0 ? "today" : ((int)(DateTime.Now - Model.CreationDate).TotalDays).ToString() + " days ago")</span>
+        <p>@Model.Comment</p>
+    </div>
+</div>

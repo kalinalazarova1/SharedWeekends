@@ -11,12 +11,12 @@
     {
         columns.Bound(model => model.Id).Hidden();
         columns.Bound(model => model.Sender);
-        columns.Bound(model => model.CreationDate);
+        columns.Bound(model => model.CreationDate).Format("{0:dd.MM.yyyy}");
         columns.Bound(model => model.Content);
         columns.Bound(model => model.Receiver);
         columns.Bound(model => model.IsRead);
-        columns.Bound(model => model.CreatedOn).Hidden();
-        columns.Bound(model => model.ModifiedOn).Hidden();
+        columns.Bound(model => model.CreatedOn).Format("{0:dd.MM.yyyy}").Hidden();
+        columns.Bound(model => model.ModifiedOn).Format("{0:dd.MM.yyyy}").Hidden();
         columns.Command(command =>
             {
                 command.Edit();

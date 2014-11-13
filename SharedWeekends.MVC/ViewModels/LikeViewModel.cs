@@ -30,7 +30,6 @@ namespace SharedWeekends.MVC.ViewModels
         [Display(Name = "Weekend Title")]
         public string WeekendTitle { get; set; }
 
-        [Required]
         public string Voter { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
