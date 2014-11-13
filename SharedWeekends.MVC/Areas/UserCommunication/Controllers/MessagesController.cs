@@ -18,6 +18,7 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
         {
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -66,6 +67,7 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
             return PartialView("_MessageDetails", msg);
         }
 
+        [ChildActionOnly]
         public ActionResult CreateMessageForm()
         {
             return PartialView("_CreateMessage");
@@ -75,7 +77,7 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(MessageViewModel model)
         {
-            if (ModelState.IsValid)
+            if (model != null && ModelState.IsValid)
             {
                 var msg = new Message();
                 msg.Content = model.Content;
@@ -88,7 +90,7 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
                 Data.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

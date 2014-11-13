@@ -15,6 +15,7 @@ namespace SharedWeekends.MVC.Areas.Administration.ViewModels
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Required]
         public string UserName { get; set; }
 

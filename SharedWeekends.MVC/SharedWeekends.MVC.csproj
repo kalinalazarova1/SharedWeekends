@@ -207,7 +207,6 @@
     <Compile Include="Areas\Administration\ViewModels\MessageViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\WeekendViewModel.cs" />
-    <Compile Include="Areas\UserCommunication\Controllers\DefaultController.cs" />
     <Compile Include="Areas\UserCommunication\Controllers\MessagesController.cs" />
     <Compile Include="Areas\UserCommunication\UserCommunicationAreaRegistration.cs" />
     <Compile Include="Areas\UserCommunication\ViewModels\MessagesViewModel.cs" />
@@ -327,7 +326,7 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Currency.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
@@ -343,7 +342,6 @@
     <Content Include="Areas\Administration\Views\Likes\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Weekends\Index.cshtml" />
     <Content Include="Areas\UserCommunication\Views\web.config" />
-    <Content Include="Areas\UserCommunication\Views\Default\Index.cshtml" />
     <Content Include="Areas\UserCommunication\Views\Messages\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -371,7 +369,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\weather.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -429,13 +429,12 @@
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Views\Details\_SingleLike.cshtml" />
+    <Content Include="Views\Home\_TopUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Shared\DisplayTemplates\" />
     <Folder Include="Areas\UserCommunication\Views\Shared\" />
     <Folder Include="Libraries\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

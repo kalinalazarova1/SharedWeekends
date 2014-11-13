@@ -16,8 +16,14 @@ namespace SharedWeekends.MVC.Controllers
         {
         }
 
-        [OutputCache(Duration = 10 * 60)]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [OutputCache(Duration = 10 * 60)]
+        [ChildActionOnly]
+        public ActionResult GetTopUsers()
         {
             var users = Data.Users
                 .All()
@@ -27,7 +33,7 @@ namespace SharedWeekends.MVC.Controllers
                 .Take(3)
                 .ToList();
 
-            return View(users);
+            return PartialView("_TopUsers", users);
         }
 
         public ActionResult About()

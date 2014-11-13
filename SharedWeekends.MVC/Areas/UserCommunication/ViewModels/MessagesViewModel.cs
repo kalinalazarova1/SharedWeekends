@@ -16,7 +16,6 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.ViewModels
         [HiddenInput(DisplayValue = false)]
         public string Id { get; set; }
 
-        [Required]
         public string Sender { get; set; }
 
         [Required]

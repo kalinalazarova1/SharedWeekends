@@ -74,6 +74,7 @@ namespace SharedWeekends.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories(string category)
         {

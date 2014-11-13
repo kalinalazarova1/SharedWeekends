@@ -15,12 +15,15 @@ namespace SharedWeekends.MVC.Areas.Administration.ViewModels
         [HiddenInput(DisplayValue = false)]
         public Guid? Id { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Required]
         public string Sender { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Required]
         public string Receiver { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Created On")]
         public DateTime CreationDate { get; set; }
 

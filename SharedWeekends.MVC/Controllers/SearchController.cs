@@ -59,6 +59,7 @@ namespace SharedWeekends.MVC.Controllers
             return PartialView("_Weekends", all);
         }
 
+        [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories()
         {

@@ -16,6 +16,7 @@ namespace SharedWeekends.MVC.Areas.Administration.ViewModels
         public int Id { get; set; }
 
         [Required]
+        [HiddenInput(DisplayValue = false)]
         public string Author { get; set; }
 
         [Required]

@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@model IList<SharedWeekends.MVC.ViewModels.TopUserViewModel>
+
 
 <div>
     <h1>Shared Weekends</h1>
@@ -23,12 +23,7 @@
                     <h3 class="panel-title">Top Rated Users</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table borderless">
-                        @for (int i = 0; i < Model.Count(); i++ )
-                        {
-                            <tr><td>@(i + 1)</td><td>@Model[i].Username</td><td><img width="20" src="../../Content/goals.png" alt="" /> @Model[i].Rating point(s)</td></tr>
-                        }
-                    </table>
+                    @Html.Action("GetTopUsers")
                 </div>
             </div>
         </div>

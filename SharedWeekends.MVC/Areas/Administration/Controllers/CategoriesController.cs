@@ -24,6 +24,8 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
         {
             return View();
         }
+
+        [HttpPost]
         public JsonResult CreateCategory([DataSourceRequest] DataSourceRequest request, CategoryViewModel category)
         {
             if (category != null && ModelState.IsValid)
@@ -40,7 +42,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 category.Id = newCategory.Id;
             }
 
-            return Json(new[] { category }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            return Json(new[] { category }.ToDataSourceResult(request, ModelState));
         }
 
         [HttpPost]
