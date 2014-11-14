@@ -10,22 +10,13 @@
 <div class="container">
     <ul class="col-md-3 list-group text-center">
         <li class="list-group-item">
-            @if (Model.Avatar != null)
-            {
-                <img src="@Model.Avatar" class="img-thumbnail" alt="Avatar" />
-            }
-            else
-            {
-                <img src="../../Content/default-avatar.jpg" class="img-thumbnail" alt="Avatar" />
-            }
+            @Html.DisplayFor(m => m.Avatar)
         </li>
         <li class="list-group-item">
-            <i class="glyphicon glyphicon-user pull-left"></i>
-            Username: @Model.Username
+            @Html.DisplayFor(m => m.Username)
         </li>
         <li class="list-group-item">
-            <i class="glyphicon glyphicon-star pull-left"></i>
-            Rating: @Model.Rating points
+            @Html.DisplayFor(m => m.Rating)
         </li>
         <li class="list-group-item">
             <i class="glyphicon glyphicon-list pull-left"></i>
@@ -50,5 +41,5 @@
                 </div>
             </div>
         </div>
-
+    </div>
 

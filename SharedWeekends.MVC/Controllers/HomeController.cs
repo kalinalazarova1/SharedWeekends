@@ -1,14 +1,13 @@
-﻿using SharedWeekends.Data;
-using SharedWeekends.MVC.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-
-namespace SharedWeekends.MVC.Controllers
+﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using SharedWeekends.Data;
+    using SharedWeekends.MVC.ViewModels;
+
     public class HomeController : BaseController
     {
         public HomeController(IWeekendsData data)
@@ -18,14 +17,14 @@ namespace SharedWeekends.MVC.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopUsers()
         {
-            var users = Data.Users
+            var users = this.Data.Users
                 .All()
                 .Project()
                 .To<TopUserViewModel>()
@@ -33,40 +32,40 @@ namespace SharedWeekends.MVC.Controllers
                 .Take(3)
                 .ToList();
 
-            return PartialView("_TopUsers", users);
+            return this.PartialView("_TopUsers", users);
         }
 
         public ActionResult About()
         {
-            return View();
+            return this.View();
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetLatestWeekends()
         {
-            var latest = Data.Weekends
+            var latest = this.Data.Weekends
                 .All()
                 .Project()
                 .To<WeekendViewModel>()
                 .OrderByDescending(w => w.CreationDate)
                 .Take(4)
                 .ToList();
-            return PartialView("_Weekends", latest);
+            return this.PartialView("_Weekends", latest);
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopWeekends()
         {
-            var top = Data.Weekends
+            var top = this.Data.Weekends
                 .All()
                 .Project()
                 .To<WeekendViewModel>()
                 .OrderByDescending(w => w.Rating)
                 .Take(4)
                 .ToList();
-            return PartialView("_Weekends", top);
+            return this.PartialView("_Weekends", top);
         }
     }
 }

@@ -36,7 +36,7 @@ function toggleForm() {
 
 function hideOnSubmit() {
     $('#review-form').hide();
-    $('#review').html('Leave a Review');
+    $('#review').hide();
 }
 
 function loadScript() {

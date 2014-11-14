@@ -1,14 +1,11 @@
-﻿using SharedWeekends.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharedWeekends.Models
+﻿namespace SharedWeekends.Models
 {
-    public class Like: AuditInfo, IDeletableEntity
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using SharedWeekends.Data.Common.Models;
+    
+    public class Like : AuditInfo, IDeletableEntity
     {
         public int Id { get; set; }
 

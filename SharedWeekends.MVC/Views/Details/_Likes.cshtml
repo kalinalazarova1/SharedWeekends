@@ -1,21 +1,13 @@
-﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.LikeViewModel>
-@foreach (var like in Model)
+﻿@model IList<SharedWeekends.MVC.ViewModels.LikeViewModel>
+@for(int i = 0; i < Model.Count; i++)
 {
     <hr>
     <div class="row">
         <div class="col-md-12">
-            @for (int i = 0; i < like.Stars; i++)
-            {
-                <span class="glyphicon glyphicon-star"></span>
-            }
-            @for (int i = 0; i < 5 - like.Stars; i++)
-            {
-                <span class="glyphicon glyphicon-star-empty"></span>
-            }
-            
-            @like.Voter
-            <span class="pull-right">@((int)(DateTime.Now - like.CreationDate).TotalDays == 0 ? "today" : ((int)(DateTime.Now - like.CreationDate).TotalDays).ToString() + " days ago")</span>
-            <p>@like.Comment</p>
+            @Html.DisplayFor(m => m[i].Stars)
+            @Model[i].Voter
+            <span class="pull-right">@((int)(DateTime.Now - Model[i].CreationDate).TotalDays == 0 ? "today" : ((int)(DateTime.Now - Model[i].CreationDate).TotalDays).ToString() + " days ago")</span>
+            <p>@Model[i].Comment</p>
         </div>
     </div>
 }

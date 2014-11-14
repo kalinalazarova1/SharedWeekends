@@ -1,8 +1,8 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
-namespace SharedWeekends.MVC
+﻿namespace SharedWeekends.MVC
 {
+    using System.Web;
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
@@ -17,8 +17,7 @@ namespace SharedWeekends.MVC
         {
             bundles.IgnoreList.Clear();
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.yeti.css"
-                      ));
+                      "~/Content/bootstrap.yeti.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
                       "~/Content/kendo/kendo.common.*",
@@ -27,19 +26,18 @@ namespace SharedWeekends.MVC
             bundles.Add(new StyleBundle("~/Content/custom").Include(
                       "~/Content/site.css",
                       "~/Content/shop-item.css",
-                      "~/Content/shop-homepage.css"
-                ));
+                      "~/Content/shop-homepage.css"));
         }
 
         private static void RegisterScriptBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                //.Include("~/Scripts/jquery-{version}.js"));
                 .Include("~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendo")
-                .Include("~/Scripts/kendo/kendo.all.min.js",
-                        "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+                .Include(
+                    "~/Scripts/kendo/kendo.all.min.js",
+                    "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

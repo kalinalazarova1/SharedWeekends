@@ -1,34 +1,25 @@
-﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.WeekendViewModel>
+﻿@model IList<SharedWeekends.MVC.ViewModels.WeekendViewModel>
 
-@foreach (var item in Model)
+@for (int i = 0; i < Model.Count(); i++)
 {
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-            <img src="@item.PictureUrl" alt="">
+            @Html.DisplayFor(m => m[i].PictureUrl)
             <div class="caption">
                 <div class="col-md-12">
-                    <span class="pull-right">BGN @item.PricePerPerson</span>
+                    <span class="pull-right">@Html.DisplayFor(m => m[i].PricePerPerson)</span>
                 </div>
                 <div class="col-md-12">
                     <h4>
-                        <a href="~/Details/Index/@item.Id">@item.Title</a>
+                        <a href="~/Details/Index/@Model[i].Id">@Model[i].Title</a>
                     </h4>
-                    <p>@(item.Content.Length > 90 ? item.Content.Substring(0, 90) + "..." : item.Content)</p>
+                    <p>@Html.DisplayFor(m => m[i].Content)</p>
                 </div>
 
             </div>
             <div class="ratings">
-                <p class="pull-right">@item.LikesCount reviews</p>
-                <p>
-                    @for (int i = 0; i < (int)item.Rating; i++)
-                    {
-                        <span class="glyphicon glyphicon-star"></span>
-                    }
-                    @for (int i = 0; i < 5 - (int)item.Rating; i++)
-                    {
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    }
-                </p>
+                @Html.DisplayFor(m => m[i].LikesCount)
+                @Html.DisplayFor(m => m[i].Rating)
             </div>
         </div>
     </div>

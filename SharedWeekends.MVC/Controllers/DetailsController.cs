@@ -1,16 +1,17 @@
-﻿using SharedWeekends.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.MVC.ViewModels;
-using SharedWeekends.Models;
-using Microsoft.AspNet.Identity;
-
-namespace SharedWeekends.MVC.Controllers
+﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Microsoft.AspNet.Identity;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.ViewModels;
+    
     public class DetailsController : BaseController
     {
         public DetailsController(IWeekendsData data)
@@ -22,29 +23,38 @@ namespace SharedWeekends.MVC.Controllers
         public ActionResult Index(int? id)
         {
             var selected = Data.Weekends.All().Where(w => w.Id == id).Project().To<WeekendViewModel>().First();
-            return View(selected);
+            var userId = this.User.Identity.GetUserId();
+            if (this.Data.Likes.All().Any(l => (l.WeekendId == id && l.VoterId == userId) || (selected.Author == this.User.Identity.Name)))
+            {
+                this.ViewBag.HasLikedThis = true;
+            }
+            else
+            {
+                this.ViewBag.HasLikedThis = false;
+            }
+           
+            return this.View(selected);
         }
 
         [ChildActionOnly]
         public ActionResult GetWeekendLikes(int? id)
         {
-            var likes = Data.Likes.All().Where(l => l.WeekendId == id).Project().To<LikeViewModel>();
-            return PartialView("_Likes", likes);
+            var likes = this.Data.Likes.All().Where(l => l.WeekendId == id).Project().To<LikeViewModel>().ToList();
+            return this.PartialView("_Likes", likes);
         }
-
 
         [ChildActionOnly]
         public ActionResult CreateLikeForm(int? id)
         {
-            TempData["Id"] = id;
-            return PartialView("_CreateLike");
+            this.TempData["Id"] = id;
+            return this.PartialView("_CreateLike");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateLike(LikeViewModel like)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 like.Voter = User.Identity.Name;
                 like.CreationDate = DateTime.Now;
@@ -57,13 +67,13 @@ namespace SharedWeekends.MVC.Controllers
                     WeekendId = like.WeekendId
                 };
 
-                Data.Likes.Add(newLike);
-                Data.SaveChanges();
-                Data.Weekends.All().FirstOrDefault(w => w.Id == newLike.WeekendId).Author.Rating += newLike.Stars;
-                Data.SaveChanges();
+                this.Data.Likes.Add(newLike);
+                this.Data.SaveChanges();
+                this.Data.Weekends.All().FirstOrDefault(w => w.Id == newLike.WeekendId).Author.Rating += newLike.Stars;
+                this.Data.SaveChanges();
             }
 
-            return PartialView("_SingleLike", like);
+            return this.PartialView("_SingleLike", like);
         }
     }
 }

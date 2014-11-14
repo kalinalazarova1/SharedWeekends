@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.Administration
+﻿namespace SharedWeekends.MVC.Areas.Administration
 {
+    using System.Web.Mvc;
+
     public class AdministrationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -17,8 +17,7 @@ namespace SharedWeekends.MVC.Areas.Administration
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

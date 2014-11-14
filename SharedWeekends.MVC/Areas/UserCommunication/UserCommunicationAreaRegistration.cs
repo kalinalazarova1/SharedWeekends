@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.UserCommunication
+﻿namespace SharedWeekends.MVC.Areas.UserCommunication
 {
+    using System.Web.Mvc;
+
     public class UserCommunicationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -17,8 +17,7 @@ namespace SharedWeekends.MVC.Areas.UserCommunication
             context.MapRoute(
                 "UserCommunication_default",
                 "UserCommunication/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

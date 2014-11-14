@@ -1,15 +1,14 @@
-﻿using SharedWeekends.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.MVC.ViewModels;
-
-namespace SharedWeekends.MVC.Controllers
+﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using SharedWeekends.Data;
+    using SharedWeekends.MVC.ViewModels;
+
     public class SearchController : BaseController
     {
         public SearchController(IWeekendsData data)
@@ -28,7 +27,7 @@ namespace SharedWeekends.MVC.Controllers
                 .To<WeekendViewModel>()
                 .ToList();
 
-            return View();
+            return this.View();
         }
 
         public ActionResult FilterByCategory(int id)
@@ -46,7 +45,7 @@ namespace SharedWeekends.MVC.Controllers
             }
             else
             {
-                all = Data
+                all = this.Data
                     .Weekends
                     .All()
                     .Where(w => w.CategoryId == id)
@@ -56,15 +55,15 @@ namespace SharedWeekends.MVC.Controllers
                     .ToList();
             }
 
-            return PartialView("_Weekends", all);
+            return this.PartialView("_Weekends", all);
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories()
         {
-            var categories = Data.Categories.All().Project().To<CategoryViewModel>();
-            return PartialView("_CategoriesList", categories);
+            var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
+            return this.PartialView("_CategoriesList", categories);
         }
     }
 }

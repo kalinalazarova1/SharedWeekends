@@ -1,17 +1,18 @@
-﻿using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.Data;
-using SharedWeekends.Models;
-using SharedWeekends.MVC.Areas.Administration.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.Administration.Controllers
+﻿namespace SharedWeekends.MVC.Areas.Administration.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Areas.Administration.ViewModels;
+
     public class MessagesController : AdminController
     {
         public MessagesController(IWeekendsData data)
@@ -22,7 +23,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
         // GET: Administration/Messages
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -47,7 +48,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 message.Id = newMessage.Id;
             }
 
-            return Json(new[] { message }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { message }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -60,7 +61,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 .To<MessageViewModel>()
                 .ToDataSourceResult(request);
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [HttpPost]
@@ -81,7 +82,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 this.Data.SaveChanges();
             }
 
-            return Json((new[] { message }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { message }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -92,7 +93,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             this.Data.Messages.Delete(existingMessage);
             this.Data.SaveChanges();
 
-            return Json(new[] { message }, JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { message }, JsonRequestBehavior.AllowGet);
         }
     }
 }

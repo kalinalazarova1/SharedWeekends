@@ -1,16 +1,16 @@
-﻿using SharedWeekends.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using Microsoft.AspNet.Identity;
-using SharedWeekends.MVC.ViewModels;
-using SharedWeekends.Models;
-
-namespace SharedWeekends.MVC.Controllers
+﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Microsoft.AspNet.Identity;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.ViewModels;
+    
     public class ProfileController : BaseController
     {
         public ProfileController(IWeekendsData data)
@@ -21,41 +21,41 @@ namespace SharedWeekends.MVC.Controllers
         // GET: Profile
         public ActionResult Index()
         {
-            var user = Data.Users.All()
+            var user = this.Data.Users.All()
                 .Project()
                 .To<UserViewModel>()
                 .FirstOrDefault(u => u.Username == User.Identity.Name);
 
-            return View(user);
+            return this.View(user);
         }
 
         [ChildActionOnly]
         public ActionResult GetMyWeekends()
         {
-            var userId = User.Identity.GetUserId();
-            var my = Data.Weekends.All()
+            var userId = this.User.Identity.GetUserId();
+            var my = this.Data.Weekends.All()
                 .Where(w => w.AuthorId == userId)
                 .OrderByDescending(w => w.CreationDate)
                 .Project()
                 .To<WeekendViewModel>();
 
-            return PartialView("_MyWeekendsList", my);
+            return this.PartialView("_MyWeekendsList", my);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var weekend = Data.Weekends.All().Project().To<WeekendViewModel>().FirstOrDefault(w => w.Id == id);
-            return View("MyWeekendEdit", weekend);
+            var weekend = this.Data.Weekends.All().Project().To<WeekendViewModel>().FirstOrDefault(w => w.Id == id);
+            return this.View("MyWeekendEdit", weekend);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(WeekendViewModel weekend)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                var editedWeekend = Data.Weekends
+                var editedWeekend = this.Data.Weekends
                     .All()
                     .FirstOrDefault(w => w.Id == weekend.Id);
 
@@ -68,59 +68,58 @@ namespace SharedWeekends.MVC.Controllers
                 editedWeekend.Lattitude = weekend.Lattitude;
                 editedWeekend.Longitude = weekend.Longitude;
 
-                Data.SaveChanges();
+                this.Data.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories(string category)
         {
-            var categories = Data.Categories.All().Project().To<CategoryViewModel>();
-            @ViewBag.Selected = category;
-            return PartialView("_Categories", categories);
+            var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
+            this.ViewBag.Selected = category;
+            return this.PartialView("_Categories", categories);
         }
 
         [ChildActionOnly]
         public ActionResult GetMyReviews()
         {
-            var userId = User.Identity.GetUserId();
-            var my = Data.Likes.All()
+            var userId = this.User.Identity.GetUserId();
+            var my = this.Data.Likes.All()
                 .Where(l => l.VoterId == userId)
                 .OrderByDescending(l => l.CreationDate)
                 .Project()
                 .To<LikeViewModel>();
 
-            return PartialView("_MyReviews", my);
+            return this.PartialView("_MyReviews", my);
         }
 
         [HttpGet]
         public ActionResult EditReview(int id)
         {
-            var review = Data.Likes.All().Project().To<LikeViewModel>().FirstOrDefault(l => l.Id == id);
-            return View("MyReviewEdit", review);
+            var review = this.Data.Likes.All().Project().To<LikeViewModel>().FirstOrDefault(l => l.Id == id);
+            return this.View("MyReviewEdit", review);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditReview(LikeViewModel like)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                var editedLike = Data.Likes
+                var editedLike = this.Data.Likes
                     .All()
                     .FirstOrDefault(l => l.Id == like.Id);
 
                 editedLike.Stars = like.Stars;
                 editedLike.Comment = like.Comment;
                 
-                Data.SaveChanges();
+                this.Data.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
-
     }
 }

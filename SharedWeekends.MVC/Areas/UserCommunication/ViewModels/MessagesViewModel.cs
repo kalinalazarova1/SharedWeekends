@@ -1,16 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.Models;
-using SharedWeekends.MVC.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.UserCommunication.ViewModels
+﻿namespace SharedWeekends.MVC.Areas.UserCommunication.ViewModels
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
+    using AutoMapper;
+
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Infrastructure.Mapping;
+
     public class MessageViewModel : IMapFrom<Message>, IHaveCustomMappings
     {
         [HiddenInput(DisplayValue = false)]
@@ -18,15 +16,19 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.ViewModels
 
         public string Sender { get; set; }
 
+        [StringLength(20, MinimumLength = 3)]
         [Required]
         public string Receiver { get; set; }
 
         public DateTime CreationDate { get; set; }
 
+        [StringLength(30, MinimumLength = 3)]
         [Required]
         public string Subject { get; set; }
 
+        [StringLength(300, MinimumLength = 3)]
         [Required]
+        [UIHint("Content")]
         public string Content { get; set; }
 
         public bool IsRead { get; set; }

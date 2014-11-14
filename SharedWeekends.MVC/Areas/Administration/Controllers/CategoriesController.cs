@@ -1,17 +1,18 @@
-﻿using AutoMapper.QueryableExtensions;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using SharedWeekends.Models;
-using SharedWeekends.MVC.Areas.Administration.ViewModels;
-using SharedWeekends.Data;
-
-namespace SharedWeekends.MVC.Areas.Administration.Controllers
+﻿namespace SharedWeekends.MVC.Areas.Administration.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Areas.Administration.ViewModels;
+
     public class CategoriesController : AdminController
     {
         public CategoriesController(IWeekendsData data)
@@ -22,7 +23,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
         // GET: Administration/Categories
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -42,7 +43,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 category.Id = newCategory.Id;
             }
 
-            return Json(new[] { category }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { category }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
@@ -55,7 +56,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 .To<CategoryViewModel>()
                 .ToDataSourceResult(request);
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [HttpPost]
@@ -71,7 +72,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 this.Data.SaveChanges();
             }
 
-            return Json((new[] { category }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { category }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -82,7 +83,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             this.Data.Categories.Delete(existingCategory);
             this.Data.SaveChanges();
 
-            return Json(new[] { category }, JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { category }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,0 +1,9 @@
+﻿@model String
+@if (Model != null)
+{
+    <img src="@Model" class="img-thumbnail" alt="Avatar" />
+}
+else
+{
+    <img src="~/Content/default-avatar.jpg" class="img-thumbnail" alt="Avatar" />
+}

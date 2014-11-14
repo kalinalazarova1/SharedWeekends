@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace SharedWeekends.MVC.ViewModels
+﻿namespace SharedWeekends.MVC.ViewModels
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -18,8 +18,11 @@ namespace SharedWeekends.MVC.ViewModels
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
+        
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+        
         public string ReturnUrl { get; set; }
+        
         public bool RememberMe { get; set; }
     }
 
@@ -31,6 +34,7 @@ namespace SharedWeekends.MVC.ViewModels
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+        
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
@@ -68,6 +72,11 @@ namespace SharedWeekends.MVC.ViewModels
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Url]
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -20,6 +20,5 @@
         IDeletableEntityRepository<T> GetRepository<T>() where T : class, IDeletableEntity;
 
         int SaveChanges();
-
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.Administration.ViewModels
+﻿namespace SharedWeekends.MVC.Areas.Administration.ViewModels
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public abstract class AdministrationViewModel
     {
         [HiddenInput(DisplayValue = false)]

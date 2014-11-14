@@ -1,17 +1,18 @@
-﻿using SharedWeekends.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.MVC.Areas.Administration.ViewModels;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using SharedWeekends.Models;
-
-namespace SharedWeekends.MVC.Areas.Administration.Controllers
+﻿namespace SharedWeekends.MVC.Areas.Administration.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Areas.Administration.ViewModels;
+
     public class UsersController : AdminController
     {
         public UsersController(IWeekendsData data)
@@ -22,12 +23,12 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
         // GET: Administration/Home
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public JsonResult CreateUser([DataSourceRequest] DataSourceRequest request, UserViewModel user)
         {
-            if (user != null && ModelState.IsValid)
+            if (user != null && this.ModelState.IsValid)
             {
                 var newUser = new User
                 {
@@ -43,7 +44,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 user.Id = newUser.Id;
             }
 
-            return Json(new[] { user }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { user }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -56,7 +57,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 .To<UserViewModel>()
                 .ToDataSourceResult(request);
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [HttpPost]
@@ -74,7 +75,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 this.Data.SaveChanges();
             }
 
-            return Json((new[] { user }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { user }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -85,7 +86,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             this.Data.Users.Delete(existingUser);
             this.Data.SaveChanges();
 
-            return Json(new[] { user }, JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { user }, JsonRequestBehavior.AllowGet);
         }
     }
 }

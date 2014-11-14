@@ -1,16 +1,16 @@
-﻿using SharedWeekends.Data;
-using SharedWeekends.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using Microsoft.AspNet.Identity;
-using SharedWeekends.MVC.ViewModels;
-
-namespace SharedWeekends.MVC.Controllers
+﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+    
+    using Microsoft.AspNet.Identity;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.ViewModels;
+
     public class CreateWeekendController : BaseController
     {
         public CreateWeekendController(IWeekendsData data)
@@ -18,16 +18,17 @@ namespace SharedWeekends.MVC.Controllers
         {
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(WeekendViewModel weekend)
+        public ActionResult Index(WeekendViewModel weekend)
         {
-            if(ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var newWeekend = new Weekend()
                 {
@@ -43,19 +44,19 @@ namespace SharedWeekends.MVC.Controllers
                     Longitude = weekend.Longitude
                 };
 
-                Data.Weekends.Add(newWeekend);
-                Data.SaveChanges();
+                this.Data.Weekends.Add(newWeekend);
+                this.Data.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories()
         {
-            var categories = Data.Categories.All().Project().To<CategoryViewModel>();
-            return PartialView("_Categories", categories);
+            var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
+            return this.PartialView("_Categories", categories);
         }
     }
 }

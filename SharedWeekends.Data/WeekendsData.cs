@@ -1,13 +1,13 @@
 ﻿namespace SharedWeekends.Data
 {
     using System;
-    using System.Data.Entity;
     using System.Collections.Generic;
+    using System.Data.Entity;
 
-    using SharedWeekends.Models;
+    using SharedWeekends.Data.Common.Models;
     using SharedWeekends.Data.Common.Repositories;
     using SharedWeekends.Data.Common.Repository;
-    using SharedWeekends.Data.Common.Models;
+    using SharedWeekends.Models;
 
     public class WeekendsData : IWeekendsData
     {
@@ -80,7 +80,6 @@
             }
 
             return (IDeletableEntityRepository<T>)this.repositories[typeOfModel];
-
         }
     }
 }

@@ -1,14 +1,15 @@
 namespace SharedWeekends.Data.Migrations
 {
-    using SharedWeekends.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity;
-
+    using Microsoft.AspNet.Identity.EntityFramework;
+    
+    using SharedWeekends.Models;
+    
     public sealed class Configuration : DbMigrationsConfiguration<WeekendsDbContext>
     {
         public Configuration()
@@ -20,10 +21,11 @@ namespace SharedWeekends.Data.Migrations
         protected override void Seed(WeekendsDbContext context)
         {
             var db = new WeekendsDbContext();
-            if(db.Users.Any())
+            if (db.Users.Any())
             {
                 return;
             }
+
             var userManager = new UserManager<User>(new UserStore<User>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
@@ -48,6 +50,7 @@ namespace SharedWeekends.Data.Migrations
                 userManager.AddToRole(userAdmin.Id, "admin");
                 userManager.AddToRole(userMod.Id, "moderator");
             }
+
             var message = new Message()
             {
                 Content = "Bla bal",
@@ -68,13 +71,13 @@ namespace SharedWeekends.Data.Migrations
 
             var weekend = new Weekend()
             {
-                 AuthorId = userAdmin.Id,
-                 Category = category,
-                 Lattitude = 42.60m,
-                 Longitude = 23.18m,
-                 CreationDate = DateTime.Now,
-                 Content = "Best weekend so far",
-                 Title = "Nlkwd"
+                AuthorId = userAdmin.Id,
+                Category = category,
+                Lattitude = 42.60m,
+                Longitude = 23.18m,
+                CreationDate = DateTime.Now,
+                Content = "Best weekend so far",
+                Title = "Nlkwd"
             };
 
             db.Weekends.Add(weekend);

@@ -1,14 +1,11 @@
-﻿using SharedWeekends.Models;
-using SharedWeekends.MVC.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.Administration.ViewModels
+﻿namespace SharedWeekends.MVC.Areas.Administration.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Infrastructure.Mapping;
+
     public class CategoryViewModel : AdministrationViewModel, IMapFrom<Category>
     {
         [HiddenInput(DisplayValue = false)]

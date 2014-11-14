@@ -30,7 +30,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="@Html.DisplayFor(modelItem => item.PictureUrl)" width="80" />
+            @if (item.PictureUrl != null)
+            {
+                <img src="@item.PictureUrl" width="80" alt="Photo">
+            }
+            else
+            {
+                <img src="~/Content/default.jpg" width="80" alt="Photo" />
+            }
         </td>
         <td>
             <a href="Details/Index/@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
@@ -58,4 +65,8 @@
 }
 
 </table>
+}
+else
+{
+<div>No Shared Weekends</div>
 }

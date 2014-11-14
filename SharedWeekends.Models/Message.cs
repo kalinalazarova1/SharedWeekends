@@ -1,10 +1,11 @@
 ﻿namespace SharedWeekends.Models
 {
-    using SharedWeekends.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Message: AuditInfo, IDeletableEntity
+    using SharedWeekends.Data.Common.Models;
+
+    public class Message : AuditInfo, IDeletableEntity
     {
         public Message()
         {

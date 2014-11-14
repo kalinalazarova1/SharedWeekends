@@ -1,17 +1,18 @@
-﻿using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.Data;
-using SharedWeekends.Models;
-using SharedWeekends.MVC.Areas.Administration.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace SharedWeekends.MVC.Areas.Administration.Controllers
+﻿namespace SharedWeekends.MVC.Areas.Administration.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+    
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Areas.Administration.ViewModels;
+
     public class LikesController : AdminController
     {
         public LikesController(IWeekendsData data)
@@ -22,7 +23,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
         // GET: Administration/Likes
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -46,7 +47,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 like.Id = newLike.Id;
             }
 
-            return Json(new[] { like }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { like }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -59,7 +60,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 .To<LikeViewModel>()
                 .ToDataSourceResult(request);
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [HttpPost]
@@ -79,7 +80,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
                 this.Data.SaveChanges();
             }
 
-            return Json((new[] { like }.ToDataSourceResult(request, ModelState)), JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { like }.ToDataSourceResult(request, this.ModelState), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -90,7 +91,7 @@ namespace SharedWeekends.MVC.Areas.Administration.Controllers
             this.Data.Likes.Delete(existingLike);
             this.Data.SaveChanges();
 
-            return Json(new[] { like }, JsonRequestBehavior.AllowGet);
+            return this.Json(new[] { like }, JsonRequestBehavior.AllowGet);
         }
     }
 }

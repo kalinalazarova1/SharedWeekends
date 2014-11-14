@@ -1,21 +1,28 @@
-﻿using AutoMapper;
-using SharedWeekends.Models;
-using SharedWeekends.MVC.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SharedWeekends.MVC.ViewModels
+﻿namespace SharedWeekends.MVC.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web;
+
+    using AutoMapper;
+
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Infrastructure.Mapping;
+
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
+        [StringLength(20, MinimumLength = 3)]
+        [UIHint("Username")]
         public string Username { get; set; }
 
+        [UIHint("Points")]
         public int Rating { get; set; }
 
+        [UIHint("Avatar")]
         public string Avatar { get; set; }
 
         public int UnreadMessages { get; set; }

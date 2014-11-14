@@ -1,16 +1,16 @@
-﻿using SharedWeekends.Data;
-using SharedWeekends.MVC.Controllers;
-using SharedWeekends.MVC.Areas.UserCommunication.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using SharedWeekends.Models;
-
-namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
+﻿namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+
+    using SharedWeekends.Data;
+    using SharedWeekends.Models;
+    using SharedWeekends.MVC.Areas.UserCommunication.ViewModels;
+    using SharedWeekends.MVC.Controllers;
+
     public class MessagesController : BaseController
     {
         public MessagesController(IWeekendsData data)
@@ -21,13 +21,13 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [ChildActionOnly]
         public ActionResult GetMessages()
         {
-            var received = Data.Messages
+            var received = this.Data.Messages
                 .All()
                 .Where(m => m.Receiver.UserName == User.Identity.Name)
                 .Project()
@@ -35,13 +35,13 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
                 .OrderByDescending(m => m.CreationDate)
                 .ToList();
 
-            return PartialView("_MessagesList", received);
+            return this.PartialView("_MessagesList", received);
         }
 
         [ChildActionOnly]
         public ActionResult GetSentMessages()
         {
-            var sent = Data.Messages
+            var sent = this.Data.Messages
                 .All()
                 .Where(m => m.Sender == User.Identity.Name)
                 .Project()
@@ -49,35 +49,35 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
                 .OrderByDescending(m => m.CreationDate)
                 .ToList();
 
-            return PartialView("_SentMessagesList", sent);
+            return this.PartialView("_SentMessagesList", sent);
         }
 
         public ActionResult MessageDetails(string id)
         {
-            var msg = Data.Messages
+            var msg = this.Data.Messages
                 .All()
                 .Project()
                 .To<MessageViewModel>()
                 .FirstOrDefault(m => m.Id == id);
 
-            var dbMsg = Data.Messages.All().FirstOrDefault(m => m.Id.ToString() == id);
+            var dbMsg = this.Data.Messages.All().FirstOrDefault(m => m.Id.ToString() == id);
             dbMsg.IsRead = true;
-            Data.SaveChanges();
+            this.Data.SaveChanges();
 
-            return PartialView("_MessageDetails", msg);
+            return this.PartialView("_MessageDetails", msg);
         }
 
         [ChildActionOnly]
         public ActionResult CreateMessageForm()
         {
-            return PartialView("_CreateMessage");
+            return this.PartialView("_CreateMessage");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(MessageViewModel model)
         {
-            if (model != null && ModelState.IsValid)
+            if (model != null && this.ModelState.IsValid)
             {
                 var msg = new Message();
                 msg.Content = model.Content;
@@ -86,11 +86,11 @@ namespace SharedWeekends.MVC.Areas.UserCommunication.Controllers
                 msg.IsRead = false;
                 msg.Sender = User.Identity.Name;
                 msg.ReceiverId = Data.Users.All().FirstOrDefault(u => u.UserName == model.Receiver).Id;
-                Data.Messages.Add(msg);
-                Data.SaveChanges();
+                this.Data.Messages.Add(msg);
+                this.Data.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
     }
 }

@@ -5,22 +5,17 @@
     using System.Linq;
 
     using Microsoft.AspNet.Identity.EntityFramework;
-
-    using SharedWeekends.Models;
-    using SharedWeekends.Data.Migrations;
+    
     using SharedWeekends.Data.Common.Models;
-
+    using SharedWeekends.Data.Migrations;
+    using SharedWeekends.Models;
+    
     public class WeekendsDbContext : IdentityDbContext<User>, IWeekendsDbContext
     {
         public WeekendsDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<WeekendsDbContext, Configuration>());
-        }
-
-        public static WeekendsDbContext Create()
-        {
-            return new WeekendsDbContext();
         }
 
         public virtual IDbSet<Message> Messages { get; set; }
@@ -30,6 +25,11 @@
         public virtual IDbSet<Category> Categories { get; set; }
 
         public virtual IDbSet<Like> Likes { get; set; }
+
+        public static WeekendsDbContext Create()
+        {
+            return new WeekendsDbContext();
+        }
 
         public override int SaveChanges()
         {

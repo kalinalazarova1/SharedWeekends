@@ -1,0 +1,9 @@
+﻿@model IList<SharedWeekends.MVC.ViewModels.TopUserViewModel>
+
+<table class="table borderless">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <tr><td>@(i + 1)</td><td>@Model[i].Username</td><td><img width="20" src="../../Content/goals.png" alt="" /> @Model[i].Rating point(s)</td></tr>
+    }
+</table>
+
