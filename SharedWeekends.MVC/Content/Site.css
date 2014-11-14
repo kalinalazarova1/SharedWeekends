@@ -10,6 +10,16 @@
     white-space: nowrap;
 }
 
+.fixed{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.fixeddouble{
+    height: 400px;
+    overflow-y: scroll;
+}
+
 #weather ul{
     list-style: none;
     font-size: 12px;

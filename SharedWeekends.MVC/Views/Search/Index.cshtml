@@ -13,9 +13,30 @@
                 @Html.Action("GetCategories")
             </div>
         </div>
+        <div class="col-md-9">
+            <ul class="pager">
+                <li>
+                    @Ajax.ActionLink("Previous", "FilterByCategory", new { page = -1 },
+                    new AjaxOptions()
+                    {
+                        UpdateTargetId = "main",
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @class = "list-group-item" })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Next", "FilterByCategory", new { page = 1 },
+                    new AjaxOptions()
+                    {
+                        UpdateTargetId = "main",
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace
+                    }, new { @class = "list-group-item" })
+                </li>
+            </ul>
+        </div>
         <div class="col-md-9" id="main">
-            @Html.Action("FilterByCategory", new { id = 0 })
-            </div>
+        @Html.Action("FilterByCategory", new { id = 0, page = 0 })
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SharedWeekends.MVC.ViewModels.CategoryViewModel>
 
 <div class="list-group">
-    @Ajax.ActionLink("All weekends", "FilterByCategory", new { id = 0 },
+    @Ajax.ActionLink("All weekends", "FilterByCategory", new { id = 0, page = 0 },
         new AjaxOptions()
         {
             UpdateTargetId = "main",
@@ -11,7 +11,7 @@
 
     @foreach (var item in Model)
     {
-        @Ajax.ActionLink(item.Name, "FilterByCategory", new { id = item.Id },
+        @Ajax.ActionLink(item.Name, "FilterByCategory", new { id = item.Id, page = 0 },
         new AjaxOptions()
         {
             UpdateTargetId = "main",

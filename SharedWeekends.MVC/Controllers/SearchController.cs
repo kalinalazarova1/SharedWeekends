@@ -11,6 +11,8 @@
 
     public class SearchController : BaseController
     {
+        private static readonly int PageSize = 3;
+
         public SearchController(IWeekendsData data)
             : base(data)
         {
@@ -19,29 +21,72 @@
         // GET: Search
         public ActionResult Index()
         {
-            var all = Data
-                .Weekends
-                .All()
-                .OrderByDescending(w => w.CreationDate)
-                .Project()
-                .To<WeekendViewModel>()
-                .ToList();
+            this.TempData["CategoryId"] = 0;
+            this.TempData["Page"] = 0;
+            //var all = Data
+            //    .Weekends
+            //    .All()
+            //    .OrderByDescending(w => w.CreationDate)
+            //    .Project()
+            //    .To<WeekendViewModel>()
+            //    .ToList();
 
             return this.View();
         }
 
-        public ActionResult FilterByCategory(int id)
+        public ActionResult FilterByCategory(int? id, int page)
         {
+            var currentPage = (int)TempData["Page"] + page < 0 ? 0 : (int)TempData["Page"] + page;
+            if(page == 0)
+            {
+                currentPage = 0;
+            }
+
             IEnumerable<WeekendViewModel> all;
             if (id == 0)
             {
-                all = Data
+                all = this.Data
                     .Weekends
                     .All()
                     .OrderByDescending(w => w.CreationDate)
+                    .Skip(SearchController.PageSize * currentPage)
+                    .Take(SearchController.PageSize)
                     .Project()
                     .To<WeekendViewModel>()
                     .ToList();
+
+                this.TempData["CategoryId"] = id;
+            }
+            else if (id == null && (int)this.TempData["CategoryId"] != 0)
+            {
+                var categoryId = (int)this.TempData["CategoryId"];
+                all = this.Data
+                    .Weekends
+                    .All()
+                    .Where(w => w.CategoryId == categoryId)
+                    .OrderByDescending(w => w.CreationDate)
+                    .Skip(SearchController.PageSize * currentPage)
+                    .Take(SearchController.PageSize)
+                    .Project()
+                    .To<WeekendViewModel>()
+                    .ToList();
+
+                this.TempData["CategoryId"] = categoryId;
+            }
+            else if (id == null && (int)this.TempData["CategoryId"] == 0)
+            {
+                var categoryId = (int)this.TempData["CategoryId"];
+                all = this.Data
+                    .Weekends
+                    .All()
+                    .OrderByDescending(w => w.CreationDate)
+                    .Skip(SearchController.PageSize * currentPage)
+                    .Take(SearchController.PageSize)
+                    .Project()
+                    .To<WeekendViewModel>()
+                    .ToList();
+
+                this.TempData["CategoryId"] = categoryId;
             }
             else
             {
@@ -50,11 +95,15 @@
                     .All()
                     .Where(w => w.CategoryId == id)
                     .OrderByDescending(w => w.CreationDate)
+                    .Take(SearchController.PageSize)
                     .Project()
                     .To<WeekendViewModel>()
                     .ToList();
+
+                this.TempData["CategoryId"] = id;
             }
 
+            this.TempData["Page"] = currentPage;
             return this.PartialView("_Weekends", all);
         }
 

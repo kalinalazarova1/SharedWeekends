@@ -20,6 +20,11 @@
             return this.View();
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         [OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopUsers()
