@@ -18,7 +18,7 @@
         {
         }
 
-        // GET: Profile
+        [HttpGet]
         public ActionResult Index()
         {
             var user = this.Data.Users.All()
@@ -69,9 +69,12 @@
                 editedWeekend.Longitude = weekend.Longitude;
 
                 this.Data.SaveChanges();
+                this.TempData["Message"] = "Weekend successfully edited!";
+                return this.RedirectToAction("Index");
             }
 
-            return this.RedirectToAction("Index");
+            this.TempData["Message"] = "Unable to edit weekend!";
+            return this.View(weekend);
         }
 
         [OutputCache(Duration = 10 * 60)]
@@ -117,9 +120,12 @@
                 editedLike.Comment = like.Comment;
                 
                 this.Data.SaveChanges();
+                this.TempData["Message"] = "Review successfully edited!";
+                return this.RedirectToAction("Index");
             }
 
-            return this.RedirectToAction("Index");
+            this.TempData["Message"] = "Unable to edit review!";
+            return this.View(like);
         }
     }
 }

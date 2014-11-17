@@ -46,9 +46,12 @@
 
                 this.Data.Weekends.Add(newWeekend);
                 this.Data.SaveChanges();
+                this.TempData["Message"] = "Weekend successfully created!";
+                return this.RedirectToAction("Index");
             }
 
-            return this.RedirectToAction("Index");
+            this.TempData["Message"] = "Unable to create weekend!";
+            return this.View(weekend);
         }
 
         [OutputCache(Duration = 10 * 60)]

@@ -53,6 +53,12 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (TempData["Message"] != null)
+        {
+            <div id="message" class="well text-info">
+                <p>@TempData["Message"]</p>
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>

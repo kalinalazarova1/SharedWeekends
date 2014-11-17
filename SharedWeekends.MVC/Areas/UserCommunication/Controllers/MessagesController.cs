@@ -88,9 +88,12 @@
                 msg.ReceiverId = Data.Users.All().FirstOrDefault(u => u.UserName == model.Receiver).Id;
                 this.Data.Messages.Add(msg);
                 this.Data.SaveChanges();
+                this.TempData["Message"] = "Message successfully sent!";
+                return this.RedirectToAction("Index");
             }
 
-            return this.RedirectToAction("Index");
+            this.TempData["Message"] = "Unable to send message!";
+            return this.View(model);
         }
     }
 }

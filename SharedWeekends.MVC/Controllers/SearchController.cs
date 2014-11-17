@@ -18,26 +18,19 @@
         {
         }
 
-        // GET: Search
+        [HttpGet]
         public ActionResult Index()
         {
             this.TempData["CategoryId"] = 0;
             this.TempData["Page"] = 0;
-            //var all = Data
-            //    .Weekends
-            //    .All()
-            //    .OrderByDescending(w => w.CreationDate)
-            //    .Project()
-            //    .To<WeekendViewModel>()
-            //    .ToList();
-
+            
             return this.View();
         }
 
         public ActionResult FilterByCategory(int? id, int page)
         {
             var currentPage = (int)TempData["Page"] + page < 0 ? 0 : (int)TempData["Page"] + page;
-            if(page == 0)
+            if (page == 0)
             {
                 currentPage = 0;
             }

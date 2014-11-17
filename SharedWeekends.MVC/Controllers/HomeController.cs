@@ -22,7 +22,7 @@
 
         public ActionResult Error()
         {
-            return View();
+            return this.View();
         }
 
         [OutputCache(Duration = 10 * 60)]

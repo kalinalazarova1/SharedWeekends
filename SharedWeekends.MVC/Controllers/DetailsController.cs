@@ -19,7 +19,7 @@
         {
         }
 
-        // GET: Details
+        [HttpGet]
         public ActionResult Index(int? id)
         {
             var selected = Data.Weekends.All().Where(w => w.Id == id).Project().To<WeekendViewModel>().First();
