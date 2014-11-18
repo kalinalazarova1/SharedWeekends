@@ -1,6 +1,8 @@
 ﻿namespace SharedWeekends.MVC.Controllers
 {
+    using System.IO;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -24,7 +26,7 @@
             var user = this.Data.Users.All()
                 .Project()
                 .To<UserViewModel>()
-                .FirstOrDefault(u => u.Username == User.Identity.Name);
+                .FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             return this.View(user);
         }
@@ -126,6 +128,45 @@
 
             this.TempData["Message"] = "Unable to edit review!";
             return this.View(like);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAvatar(AvatarViewModel model)
+        {
+            if (model.AvatarFile != null)
+            {
+                var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+                user.AvatarPhoto = this.GetImage(model.AvatarFile);
+                this.Data.SaveChanges();
+            }
+
+            return this.RedirectToAction("Index");
+        }
+
+        private byte[] GetImage(HttpPostedFileBase uploadedImage)
+        {
+            if (uploadedImage != null)
+            {
+                using (var memory = new MemoryStream())
+                {
+                    uploadedImage.InputStream.CopyTo(memory);
+                    var content = memory.GetBuffer();
+
+                    if (uploadedImage.FileName.Split(new[] { '.' }).Last() == "jpg" || uploadedImage.FileName.Split(new[] { '.' }).Last() == "jpeg")
+                    {
+                        return content;
+                    }
+                    else
+                    {
+                        throw new HttpException(400, "Invalid file format");
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

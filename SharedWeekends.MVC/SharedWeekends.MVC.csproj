@@ -237,6 +237,7 @@
     <Compile Include="ViewModels\AccountViewModels.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="ViewModels\AvatarViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\TopUserViewModel.cs" />
     <Compile Include="ViewModels\LikeViewModel.cs" />

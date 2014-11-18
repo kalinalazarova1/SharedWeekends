@@ -34,7 +34,6 @@
                 {
                     UserName = user.UserName,
                     CreatedOn = DateTime.Now,
-                    Avatar = user.Avatar,
                     Rating = 0
                 };
 
@@ -68,7 +67,6 @@
             if (user != null && ModelState.IsValid)
             {
                 existingUser.UserName = user.UserName;
-                existingUser.Avatar = user.Avatar;
                 existingUser.ModifiedOn = DateTime.Now;
                 existingUser.Rating = user.Rating;
 

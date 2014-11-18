@@ -17,13 +17,13 @@
 
         [StringLength(20, MinimumLength = 3)]
         [UIHint("Username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [UIHint("Points")]
         public int Rating { get; set; }
 
         [UIHint("Avatar")]
-        public string Avatar { get; set; }
+        public byte[] Avatar { get; set; }
 
         public int UnreadMessages { get; set; }
 
@@ -33,7 +33,8 @@
         {
             configuration.CreateMap<User, UserViewModel>()
                 .ForMember(m => m.UnreadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => !m.IsRead && !m.IsDeleted)))
-                .ForMember(m => m.ReadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => m.IsRead && !m.IsDeleted)));
+                .ForMember(m => m.ReadMessages, opt => opt.MapFrom(u => u.Messages.Count(m => m.IsRead && !m.IsDeleted)))
+                .ForMember(m => m.Avatar, opt => opt.MapFrom(u => u.AvatarPhoto));
         }
     }
 }

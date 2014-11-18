@@ -1,7 +1,9 @@
-﻿@model String
+﻿@model Byte[]
+
 @if (Model != null)
 {
-    <img src="@Model" class="img-thumbnail" alt="Avatar" />
+    var photoString = "data:image/png;base64," + Convert.ToBase64String(Model);
+    <img src="@photoString" class="img-thumbnail" alt="Avatar" />
 }
 else
 {

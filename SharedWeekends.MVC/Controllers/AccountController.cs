@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SharedWeekends.Models;
 using SharedWeekends.MVC.ViewModels;
+using System.IO;
 
 namespace SharedWeekends.MVC.Controllers
 {
@@ -72,7 +73,7 @@ namespace SharedWeekends.MVC.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -149,7 +150,12 @@ namespace SharedWeekends.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, Avatar = model.AvatarUrl };
+                var user = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    AvatarPhoto = GetImage(model.AvatarFile)
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -445,6 +451,32 @@ namespace SharedWeekends.MVC.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
             }
         }
+
+        private byte[] GetImage(HttpPostedFileBase uploadedImage)
+        {
+            if (uploadedImage != null)
+            {
+                using (var memory = new MemoryStream())
+                {
+                    uploadedImage.InputStream.CopyTo(memory);
+                    var content = memory.GetBuffer();
+
+                    if (uploadedImage.FileName.Split(new[] { '.' }).Last() == "jpg" || uploadedImage.FileName.Split(new[] { '.' }).Last() == "jpeg")
+                    {
+                        return content;
+                    }
+                    else
+                    {
+                        throw new HttpException(400, "Invalid file format");
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion
     }
 }
