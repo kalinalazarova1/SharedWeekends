@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedWeekends.Data", "Shar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedWeekends.MVC", "SharedWeekends.MVC\SharedWeekends.MVC.csproj", "{021127E3-5582-431C-AD5A-D2D49A1B9AA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedWeekends.MVC.Tests", "SharedWeekends.MVC.Tests\SharedWeekends.MVC.Tests.csproj", "{FD3DF294-C2E8-4627-8738-5F565F6A0628}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedWeekends.Data.Common", "SharedWeekends.Data.Common\SharedWeekends.Data.Common.csproj", "{89D5B195-951A-4680-A115-2F41141717B9}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{021127E3-5582-431C-AD5A-D2D49A1B9AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021127E3-5582-431C-AD5A-D2D49A1B9AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{021127E3-5582-431C-AD5A-D2D49A1B9AA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD3DF294-C2E8-4627-8738-5F565F6A0628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD3DF294-C2E8-4627-8738-5F565F6A0628}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD3DF294-C2E8-4627-8738-5F565F6A0628}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD3DF294-C2E8-4627-8738-5F565F6A0628}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89D5B195-951A-4680-A115-2F41141717B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89D5B195-951A-4680-A115-2F41141717B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D5B195-951A-4680-A115-2F41141717B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
