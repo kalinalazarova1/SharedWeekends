@@ -20,7 +20,7 @@
             //    url: "{action}",
             //    defaults: new { controller = "Home" },
             //    namespaces: new[] { "SharedWeekends.MVC.Controllers" });
-
+            //
             routes.MapRoute(
                 name: "Default",
                 url: "",
