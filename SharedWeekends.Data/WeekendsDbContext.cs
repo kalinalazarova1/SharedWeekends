@@ -15,7 +15,7 @@
         public WeekendsDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WeekendsDbContext, Configuration>());
+            
         }
 
         public virtual IDbSet<Message> Messages { get; set; }

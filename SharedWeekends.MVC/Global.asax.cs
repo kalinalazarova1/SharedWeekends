@@ -6,11 +6,15 @@
     using System.Web.Routing;
 
     using SharedWeekends.MVC.Infrastructure.Mapping;
+    using System.Data.Entity;
+    using SharedWeekends.Data.Migrations;
+    using SharedWeekends.Data;
 
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WeekendsDbContext, Configuration>());
             ViewEnginesConfiguration.RegisterViewEngine(ViewEngines.Engines);
             AutoMapperConfig.Execute();
 
