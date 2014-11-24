@@ -33,7 +33,7 @@ namespace SharedWeekends.Data.Migrations
 
             var userAdmin = new User
             {
-                UserName = "a@a.a",
+                UserName = "admin",
                 Email = "a@a.a"
             };
 
