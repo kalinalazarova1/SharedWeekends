@@ -10,7 +10,7 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: "Default1",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "SharedWeekends.MVC.Controllers" });
@@ -20,6 +20,13 @@
                 url: "{action}",
                 defaults: new { controller = "Home" },
                 namespaces: new[] { "SharedWeekends.MVC.Controllers" });
+
+            routes.MapRoute(
+                name: "Default",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" },
+                namespaces: new[] { "SharedWeekends.MVC.Controllers" });
+
         }
     }
 }
