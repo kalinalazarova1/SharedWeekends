@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="ratings">
-                    <p class="pull-right">@Model.LikesCount reviews</p>
-                    <p>
+                    <p id="reviewsCount" class="pull-right">@Model.LikesCount reviews</p>
+                    <p id="starsCount">
                         @Html.DisplayFor(m => m.Rating) @Model.Rating stars
                     </p>
                 </div>
@@ -52,6 +52,7 @@
 </div>
 @section scripts {
     @Scripts.Render("../../Scripts/map.js")
+    @Scripts.Render("../../Scripts/rating.js")
 }
 
 

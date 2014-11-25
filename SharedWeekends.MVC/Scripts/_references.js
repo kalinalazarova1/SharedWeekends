@@ -14,3 +14,4 @@
 /// <reference path="kendo/jquery.min.js" />
 /// <reference path="kendo/kendo.all.min.js" />
 /// <reference path="kendo/kendo.aspnetmvc.min.js" />
+/// <reference path="rating.js" />
