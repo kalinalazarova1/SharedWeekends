@@ -25,7 +25,7 @@
             return this.View();
         }
 
-        [OutputCache(Duration = 10 * 60)]
+        //[OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopUsers()
         {
@@ -45,7 +45,7 @@
             return this.View();
         }
 
-        [OutputCache(Duration = 10 * 60)]
+        //[OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetLatestWeekends()
         {
@@ -59,7 +59,7 @@
             return this.PartialView("_Weekends", latest);
         }
 
-        [OutputCache(Duration = 10 * 60)]
+        //[OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetTopWeekends()
         {

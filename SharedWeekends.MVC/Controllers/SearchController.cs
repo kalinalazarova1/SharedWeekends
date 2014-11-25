@@ -100,7 +100,7 @@
             return this.PartialView("_Weekends", all);
         }
 
-        [OutputCache(Duration = 10 * 60)]
+        //[OutputCache(Duration = 10 * 60)]
         [ChildActionOnly]
         public ActionResult GetCategories()
         {
